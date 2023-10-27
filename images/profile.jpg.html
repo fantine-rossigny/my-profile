@@ -1,0 +1,2614 @@
+<!DOCTYPE html>
+<html data-assets-version="864ca73aa8d89bfcf2aa4b78f64ecaf1b9b1a184" data-assets-generated_date="2023-10-19T13:31:32.587Z" controller="student_profiles" action="show" lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="fragment" content="!">
+
+    <script>
+      window.prerenderReady = false;
+    </script>
+
+
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="apple-itunes-app" content="app-id=1511486026">
+
+
+
+
+
+    
+
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="pWkigeupwTRe5KVpSzVDPDqjjHA93ptjWxd1tRrAP1NTbXpu/wZ1S6ROBU7fO+g17B+QDUzltn1xFlxnGZTG1A==" />
+
+    <script>
+/*
+* Shared methods to include functions that allows to set and get client side cookie:
+* available both on the frontend and the backend
+* 
+*/
+
+(function(){
+
+  if (typeof getCookie !== 'function') {
+    // From http://stackoverflow.com/a/17966374
+    window.getCookie = function(name) {
+      var search = name + "=";
+      if (document.cookie.length > 0) { // if there are any cookies
+        var offset = document.cookie.indexOf(search);
+        if (offset != -1) { // if cookie exists
+          offset += search.length;
+          // set index of beginning of value
+          var end = document.cookie.indexOf(";", offset);
+          // set index of end of cookie value
+          if (end == -1) end = document.cookie.length;
+          return unescape(document.cookie.substring(offset, end));
+        }
+      }
+    }
+  }
+
+  if (typeof setCookie !== 'function') {
+    // From http://stackoverflow.com/a/17966374
+    window.setCookie = function(name, value, expires, path, theDomain, secure) {
+      var today = new Date();
+      var defaultExpire = new Date(today.getTime() + (365 * 86400000)); // a year
+
+      value = escape(value);
+      expires = expires || defaultExpire;
+      var theCookie = name + "=" + value +
+              ((expires) ? "; expires=" + expires.toGMTString() : "") +
+              ((path) ? "; path=" + path : "") +
+              ((theDomain) ? "; domain=" + theDomain : "") +
+              ((secure) ? "; secure" : "");
+      document.cookie = theCookie;
+    }
+  }
+
+  /* !! Soon DEPRECATED : 
+  *  This method will be removed when the legacy consent banner will be removed
+  */
+  if (typeof setCookieClassName !== 'function') {
+    window.setCookieClassName = function() {
+      var bodyElement = document.getElementsByTagName("body")[0];
+      var cookie_classname = "has-cookie-law-consented";
+      if (bodyElement.classList) {
+        bodyElement.classList.add(cookie_classname);
+      } else {
+        bodyElement.className = cookie_classname; // For IE9 and earlier
+      }
+    }
+  }
+
+})();
+</script>
+    
+
+      <style>
+/** **** **/
+/** Material Icons available weight : 400 **/
+/** **** **/
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/materialicons-v88-d72aa1b50fdf33cf3641-v2.woff2) format('woff2');
+}
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -moz-font-feature-settings: 'liga';
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/** **** **/
+/** Mulish Icons available weight : 300, 400, 500, 600, 700, 800, 900 **/
+/** Mulish Icons available style : 400, 700, 800, 900 **/
+/** **** **/
+@font-face {
+  font-family: 'Mulish';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/mulish-400italic-c5aac268dff23dfa2186-v2.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Mulish';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/mulish-700italic-f4b3f85574cc531222b0-v2.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Mulish';
+  font-style: italic;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/mulish-800italic-794ae76257b049eda71a-v2.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Mulish';
+  font-style: italic;
+  font-weight: 900;
+  font-display: swap;
+  src: url(https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/mulish-900italic-3de672806ec875fb0a2d-v2.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/mulish-300-b6a33742d9866e48915c-v2.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/mulish-400-3bcdf22026c5692de165-v2.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/mulish-500-33d856f040e1d8d0cb35-v2.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/mulish-600-834f4d5c9c35d1db7560-v2.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/mulish-700-881d872894ba12d0046f-v2.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/mulish-800-58f54279e4791ba53067-v2.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/mulish-900-c90fccfecaed56fb2135-v2.woff2) format('woff2');
+}
+</style>
+
+<!-- Need for legacy -->
+<!-- Media type (print) doesn't match the current environment, so browser decides it's not that important and loads the stylesheet asynchronously (without delaying page rendering). On load, we change media type so that the stylesheet gets applied to screens! -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" media="print" onload="this.media='all'">
+
+
+      <link data-ui-jobteaser="" href="https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/header_footer-6fa6462bda8d0d1ae23b.css" rel="stylesheet" media="screen" />
+      
+      <link data-ui-jobteaser="" href="https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/fo_feature_profile-25dc20468b0ce8a4232e.css" rel="stylesheet" media="screen" />
+<link data-ui-jobteaser="" rel="stylesheet" media="screen" />
+
+    <link rel="stylesheet" media="screen" href="https://d2mp1cia79qmhd.cloudfront.net/prod/assets/frontoffice/spa-4d1a59b5f93d6af8bb11fefb79d6ab56f25af59db96089efa19ab1c25d716a6d.css" />
+
+
+    <link href="https://d2mp1cia79qmhd.cloudfront.net/prod/assets/layout/favicon-37f20fdbb9305fd90187ece0a95daf93c57fe9cee2c70c4b6d17513a8edf0bbf.ico" type="image/x-icon" rel="shortcut icon">
+
+    
+
+
+<style type="text/css" id="career-center-theme-styles">
+  :root {
+    --CCMainColor: #000040;
+    --themeMainColor: #000040;
+    --themeMainDarkenColor: #000040;
+    --themeMainTextColor: #000040;
+    --themeButtonTextColor: #ffffff;
+    --themeHeaderColor: #ffffff;
+    --themeHeaderTextColor: #343434;
+    --themeBoxTitleColor: #000040;
+  }
+
+
+  [data-cc-theme*="color:color;"],
+  [data-cc-theme*="color:color[hover];"]:hover,
+  [data-cc-theme*="color:color[focus];"]:focus,
+  [data-cc-theme*="color:color[hover|focus];"]:hover,
+  [data-cc-theme*="color:color[hover|focus];"]:focus,
+  [data-cc-theme*="color:color[after];"]::after,
+  [data-cc-theme*="color:color[after:hover];"]:hover::after,
+  [data-cc-theme*="color:color[before];"]::before,
+  [data-cc-theme*="color:color[before:hover];"]:hover::before,
+  [data-cc-theme*="color:color[after|before];"]::after,
+  [data-cc-theme*="color:color[after|before];"]::before,
+  [data-cc-theme*="color:color[after|before:hover];"]:hover::after,
+  [data-cc-theme*="color:color[after|before:hover];"]:hover::before {
+    color:#000040 !important;
+  }
+
+  .cc-theme-color--color,
+  .cc-theme-color--color_hover:hover,
+  .cc-theme-color--color_focus:focus,
+  .cc-theme-color--color_hover_focus:hover,
+  .cc-theme-color--color_hover_focus:focus,
+  .cc-theme-color--color_after::after,
+  .cc-theme-color--color_after_hover:hover::after,
+  .cc-theme-color--color_before::before,
+  input:checked + .cc-theme-color--color_checked_before::before,
+  .cc-theme-color--color_before_hover:hover::before,
+  .cc-theme-color--color_after_before::after,
+  .cc-theme-color--color_after_before::before,
+  .cc-theme-color--color_after_before_hover:hover::after,
+  .cc-theme-color--color_after_before_hover:hover::before {
+    color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="background:color;"],
+  [data-cc-theme*="background:color[hover];"]:hover,
+  [data-cc-theme*="background:color[focus];"]:focus,
+  [data-cc-theme*="background:color[hover|focus];"]:hover,
+  [data-cc-theme*="background:color[hover|focus];"]:focus,
+  [data-cc-theme*="background:color[after];"]::after,
+  [data-cc-theme*="background:color[after:hover];"]:hover::after,
+  [data-cc-theme*="background:color[before];"]::before,
+  [data-cc-theme*="background:color[before:hover];"]:hover::before,
+  [data-cc-theme*="background:color[after|before];"]::after,
+  [data-cc-theme*="background:color[after|before];"]::before,
+  [data-cc-theme*="background:color[after|before:hover];"]:hover::after,
+  [data-cc-theme*="background:color[after|before:hover];"]:hover::before {
+    background-color:#000040 !important;
+  }
+
+  .cc-theme-background--color,
+  .cc-theme-background--color_hover:hover,
+  .cc-theme-background--color_focus:focus,
+  .cc-theme-background--color_hover_focus:hover,
+  .cc-theme-background--color_hover_focus:focus,
+  .cc-theme-background--color_after::after,
+  .cc-theme-background--color_after_hover:hover::after,
+  .cc-theme-background--color_before::before,
+  input:checked + .cc-theme-background--color_checked_before::before,
+  .cc-theme-background--color_before_hover:hover::before,
+  .cc-theme-background--color_after_before::after,
+  .cc-theme-background--color_after_before::before,
+  .cc-theme-background--color_after_before_hover:hover::after,
+  .cc-theme-background--color_after_before_hover:hover::before {
+    background-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="border:color;"],
+  [data-cc-theme*="border:color[hover];"]:hover,
+  [data-cc-theme*="border:color[focus];"]:focus,
+  [data-cc-theme*="border:color[hover|focus];"]:hover,
+  [data-cc-theme*="border:color[hover|focus];"]:focus,
+  [data-cc-theme*="border:color[after];"]::after,
+  [data-cc-theme*="border:color[after:hover];"]:hover::after,
+  [data-cc-theme*="border:color[before];"]::before,
+  [data-cc-theme*="border:color[before:hover];"]:hover::before,
+  [data-cc-theme*="border:color[after|before];"]::after,
+  [data-cc-theme*="border:color[after|before];"]::before,
+  [data-cc-theme*="border:color[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border:color[after|before:hover];"]:hover::before {
+    border-color:#000040 !important;
+  }
+
+  .cc-theme-border--color,
+  .cc-theme-border--color_hover:hover,
+  .cc-theme-border--color_focus:focus,
+  .cc-theme-border--color_hover_focus:hover,
+  .cc-theme-border--color_hover_focus:focus,
+  .cc-theme-border--color_after::after,
+  .cc-theme-border--color_after_hover:hover::after,
+  .cc-theme-border--color_before::before,
+  input:checked + .cc-theme-border--color_checked_before::before,
+  .cc-theme-border--color_before_hover:hover::before,
+  .cc-theme-border--color_after_before::after,
+  .cc-theme-border--color_after_before::before,
+  .cc-theme-border--color_after_before_hover:hover::after,
+  .cc-theme-border--color_after_before_hover:hover::before {
+    border-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="border-left:color;"],
+  [data-cc-theme*="border-left:color[hover];"]:hover,
+  [data-cc-theme*="border-left:color[focus];"]:focus,
+  [data-cc-theme*="border-left:color[hover|focus];"]:hover,
+  [data-cc-theme*="border-left:color[hover|focus];"]:focus,
+  [data-cc-theme*="border-left:color[after];"]::after,
+  [data-cc-theme*="border-left:color[after:hover];"]:hover::after,
+  [data-cc-theme*="border-left:color[before];"]::before,
+  [data-cc-theme*="border-left:color[before:hover];"]:hover::before,
+  [data-cc-theme*="border-left:color[after|before];"]::after,
+  [data-cc-theme*="border-left:color[after|before];"]::before,
+  [data-cc-theme*="border-left:color[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-left:color[after|before:hover];"]:hover::before {
+    border-left-color:#000040 !important;
+  }
+
+  .cc-theme-border-left--color,
+  .cc-theme-border-left--color_hover:hover,
+  .cc-theme-border-left--color_focus:focus,
+  .cc-theme-border-left--color_hover_focus:hover,
+  .cc-theme-border-left--color_hover_focus:focus,
+  .cc-theme-border-left--color_after::after,
+  .cc-theme-border-left--color_after_hover:hover::after,
+  .cc-theme-border-left--color_before::before,
+  input:checked + .cc-theme-border-left--color_checked_before::before,
+  .cc-theme-border-left--color_before_hover:hover::before,
+  .cc-theme-border-left--color_after_before::after,
+  .cc-theme-border-left--color_after_before::before,
+  .cc-theme-border-left--color_after_before_hover:hover::after,
+  .cc-theme-border-left--color_after_before_hover:hover::before {
+    border-left-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="border-top:color;"],
+  [data-cc-theme*="border-top:color[hover];"]:hover,
+  [data-cc-theme*="border-top:color[focus];"]:focus,
+  [data-cc-theme*="border-top:color[hover|focus];"]:hover,
+  [data-cc-theme*="border-top:color[hover|focus];"]:focus,
+  [data-cc-theme*="border-top:color[after];"]::after,
+  [data-cc-theme*="border-top:color[after:hover];"]:hover::after,
+  [data-cc-theme*="border-top:color[before];"]::before,
+  [data-cc-theme*="border-top:color[before:hover];"]:hover::before,
+  [data-cc-theme*="border-top:color[after|before];"]::after,
+  [data-cc-theme*="border-top:color[after|before];"]::before,
+  [data-cc-theme*="border-top:color[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-top:color[after|before:hover];"]:hover::before {
+    border-top-color:#000040 !important;
+  }
+
+  .cc-theme-border-top--color,
+  .cc-theme-border-top--color_hover:hover,
+  .cc-theme-border-top--color_focus:focus,
+  .cc-theme-border-top--color_hover_focus:hover,
+  .cc-theme-border-top--color_hover_focus:focus,
+  .cc-theme-border-top--color_after::after,
+  .cc-theme-border-top--color_after_hover:hover::after,
+  .cc-theme-border-top--color_before::before,
+  input:checked + .cc-theme-border-top--color_checked_before::before,
+  .cc-theme-border-top--color_before_hover:hover::before,
+  .cc-theme-border-top--color_after_before::after,
+  .cc-theme-border-top--color_after_before::before,
+  .cc-theme-border-top--color_after_before_hover:hover::after,
+  .cc-theme-border-top--color_after_before_hover:hover::before {
+    border-top-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="border-bottom:color;"],
+  [data-cc-theme*="border-bottom:color[hover];"]:hover,
+  [data-cc-theme*="border-bottom:color[focus];"]:focus,
+  [data-cc-theme*="border-bottom:color[hover|focus];"]:hover,
+  [data-cc-theme*="border-bottom:color[hover|focus];"]:focus,
+  [data-cc-theme*="border-bottom:color[after];"]::after,
+  [data-cc-theme*="border-bottom:color[after:hover];"]:hover::after,
+  [data-cc-theme*="border-bottom:color[before];"]::before,
+  [data-cc-theme*="border-bottom:color[before:hover];"]:hover::before,
+  [data-cc-theme*="border-bottom:color[after|before];"]::after,
+  [data-cc-theme*="border-bottom:color[after|before];"]::before,
+  [data-cc-theme*="border-bottom:color[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-bottom:color[after|before:hover];"]:hover::before {
+    border-bottom-color:#000040 !important;
+  }
+
+  .cc-theme-border-bottom--color,
+  .cc-theme-border-bottom--color_hover:hover,
+  .cc-theme-border-bottom--color_focus:focus,
+  .cc-theme-border-bottom--color_hover_focus:hover,
+  .cc-theme-border-bottom--color_hover_focus:focus,
+  .cc-theme-border-bottom--color_after::after,
+  .cc-theme-border-bottom--color_after_hover:hover::after,
+  .cc-theme-border-bottom--color_before::before,
+  input:checked + .cc-theme-border-bottom--color_checked_before::before,
+  .cc-theme-border-bottom--color_before_hover:hover::before,
+  .cc-theme-border-bottom--color_after_before::after,
+  .cc-theme-border-bottom--color_after_before::before,
+  .cc-theme-border-bottom--color_after_before_hover:hover::after,
+  .cc-theme-border-bottom--color_after_before_hover:hover::before {
+    border-bottom-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="fill:color;"],
+  [data-cc-theme*="fill:color[hover];"]:hover,
+  [data-cc-theme*="fill:color[focus];"]:focus,
+  [data-cc-theme*="fill:color[hover|focus];"]:hover,
+  [data-cc-theme*="fill:color[hover|focus];"]:focus,
+  [data-cc-theme*="fill:color[after];"]::after,
+  [data-cc-theme*="fill:color[after:hover];"]:hover::after,
+  [data-cc-theme*="fill:color[before];"]::before,
+  [data-cc-theme*="fill:color[before:hover];"]:hover::before,
+  [data-cc-theme*="fill:color[after|before];"]::after,
+  [data-cc-theme*="fill:color[after|before];"]::before,
+  [data-cc-theme*="fill:color[after|before:hover];"]:hover::after,
+  [data-cc-theme*="fill:color[after|before:hover];"]:hover::before {
+    fill:#000040 !important;
+  }
+
+  .cc-theme-fill--color,
+  .cc-theme-fill--color_hover:hover,
+  .cc-theme-fill--color_focus:focus,
+  .cc-theme-fill--color_hover_focus:hover,
+  .cc-theme-fill--color_hover_focus:focus,
+  .cc-theme-fill--color_after::after,
+  .cc-theme-fill--color_after_hover:hover::after,
+  .cc-theme-fill--color_before::before,
+  input:checked + .cc-theme-fill--color_checked_before::before,
+  .cc-theme-fill--color_before_hover:hover::before,
+  .cc-theme-fill--color_after_before::after,
+  .cc-theme-fill--color_after_before::before,
+  .cc-theme-fill--color_after_before_hover:hover::after,
+  .cc-theme-fill--color_after_before_hover:hover::before {
+    fill:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="stroke:color;"],
+  [data-cc-theme*="stroke:color[hover];"]:hover,
+  [data-cc-theme*="stroke:color[focus];"]:focus,
+  [data-cc-theme*="stroke:color[hover|focus];"]:hover,
+  [data-cc-theme*="stroke:color[hover|focus];"]:focus,
+  [data-cc-theme*="stroke:color[after];"]::after,
+  [data-cc-theme*="stroke:color[after:hover];"]:hover::after,
+  [data-cc-theme*="stroke:color[before];"]::before,
+  [data-cc-theme*="stroke:color[before:hover];"]:hover::before,
+  [data-cc-theme*="stroke:color[after|before];"]::after,
+  [data-cc-theme*="stroke:color[after|before];"]::before,
+  [data-cc-theme*="stroke:color[after|before:hover];"]:hover::after,
+  [data-cc-theme*="stroke:color[after|before:hover];"]:hover::before {
+    stroke:#000040 !important;
+  }
+
+  .cc-theme-stroke--color,
+  .cc-theme-stroke--color_hover:hover,
+  .cc-theme-stroke--color_focus:focus,
+  .cc-theme-stroke--color_hover_focus:hover,
+  .cc-theme-stroke--color_hover_focus:focus,
+  .cc-theme-stroke--color_after::after,
+  .cc-theme-stroke--color_after_hover:hover::after,
+  .cc-theme-stroke--color_before::before,
+  input:checked + .cc-theme-stroke--color_checked_before::before,
+  .cc-theme-stroke--color_before_hover:hover::before,
+  .cc-theme-stroke--color_after_before::after,
+  .cc-theme-stroke--color_after_before::before,
+  .cc-theme-stroke--color_after_before_hover:hover::after,
+  .cc-theme-stroke--color_after_before_hover:hover::before {
+    stroke:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="stop-color:color;"],
+  [data-cc-theme*="stop-color:color[hover];"]:hover,
+  [data-cc-theme*="stop-color:color[focus];"]:focus,
+  [data-cc-theme*="stop-color:color[hover|focus];"]:hover,
+  [data-cc-theme*="stop-color:color[hover|focus];"]:focus,
+  [data-cc-theme*="stop-color:color[after];"]::after,
+  [data-cc-theme*="stop-color:color[after:hover];"]:hover::after,
+  [data-cc-theme*="stop-color:color[before];"]::before,
+  [data-cc-theme*="stop-color:color[before:hover];"]:hover::before,
+  [data-cc-theme*="stop-color:color[after|before];"]::after,
+  [data-cc-theme*="stop-color:color[after|before];"]::before,
+  [data-cc-theme*="stop-color:color[after|before:hover];"]:hover::after,
+  [data-cc-theme*="stop-color:color[after|before:hover];"]:hover::before {
+    stop-color:#000040 !important;
+  }
+
+  .cc-theme-stop-color--color,
+  .cc-theme-stop-color--color_hover:hover,
+  .cc-theme-stop-color--color_focus:focus,
+  .cc-theme-stop-color--color_hover_focus:hover,
+  .cc-theme-stop-color--color_hover_focus:focus,
+  .cc-theme-stop-color--color_after::after,
+  .cc-theme-stop-color--color_after_hover:hover::after,
+  .cc-theme-stop-color--color_before::before,
+  input:checked + .cc-theme-stop-color--color_checked_before::before,
+  .cc-theme-stop-color--color_before_hover:hover::before,
+  .cc-theme-stop-color--color_after_before::after,
+  .cc-theme-stop-color--color_after_before::before,
+  .cc-theme-stop-color--color_after_before_hover:hover::after,
+  .cc-theme-stop-color--color_after_before_hover:hover::before {
+    stop-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="color:color-darken;"],
+  [data-cc-theme*="color:color-darken[hover];"]:hover,
+  [data-cc-theme*="color:color-darken[focus];"]:focus,
+  [data-cc-theme*="color:color-darken[hover|focus];"]:hover,
+  [data-cc-theme*="color:color-darken[hover|focus];"]:focus,
+  [data-cc-theme*="color:color-darken[after];"]::after,
+  [data-cc-theme*="color:color-darken[after:hover];"]:hover::after,
+  [data-cc-theme*="color:color-darken[before];"]::before,
+  [data-cc-theme*="color:color-darken[before:hover];"]:hover::before,
+  [data-cc-theme*="color:color-darken[after|before];"]::after,
+  [data-cc-theme*="color:color-darken[after|before];"]::before,
+  [data-cc-theme*="color:color-darken[after|before:hover];"]:hover::after,
+  [data-cc-theme*="color:color-darken[after|before:hover];"]:hover::before {
+    color:#000040 !important;
+  }
+
+  .cc-theme-color--color-darken,
+  .cc-theme-color--color-darken_hover:hover,
+  .cc-theme-color--color-darken_focus:focus,
+  .cc-theme-color--color-darken_hover_focus:hover,
+  .cc-theme-color--color-darken_hover_focus:focus,
+  .cc-theme-color--color-darken_after::after,
+  .cc-theme-color--color-darken_after_hover:hover::after,
+  .cc-theme-color--color-darken_before::before,
+  input:checked + .cc-theme-color--color-darken_checked_before::before,
+  .cc-theme-color--color-darken_before_hover:hover::before,
+  .cc-theme-color--color-darken_after_before::after,
+  .cc-theme-color--color-darken_after_before::before,
+  .cc-theme-color--color-darken_after_before_hover:hover::after,
+  .cc-theme-color--color-darken_after_before_hover:hover::before {
+    color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="background:color-darken;"],
+  [data-cc-theme*="background:color-darken[hover];"]:hover,
+  [data-cc-theme*="background:color-darken[focus];"]:focus,
+  [data-cc-theme*="background:color-darken[hover|focus];"]:hover,
+  [data-cc-theme*="background:color-darken[hover|focus];"]:focus,
+  [data-cc-theme*="background:color-darken[after];"]::after,
+  [data-cc-theme*="background:color-darken[after:hover];"]:hover::after,
+  [data-cc-theme*="background:color-darken[before];"]::before,
+  [data-cc-theme*="background:color-darken[before:hover];"]:hover::before,
+  [data-cc-theme*="background:color-darken[after|before];"]::after,
+  [data-cc-theme*="background:color-darken[after|before];"]::before,
+  [data-cc-theme*="background:color-darken[after|before:hover];"]:hover::after,
+  [data-cc-theme*="background:color-darken[after|before:hover];"]:hover::before {
+    background-color:#000040 !important;
+  }
+
+  .cc-theme-background--color-darken,
+  .cc-theme-background--color-darken_hover:hover,
+  .cc-theme-background--color-darken_focus:focus,
+  .cc-theme-background--color-darken_hover_focus:hover,
+  .cc-theme-background--color-darken_hover_focus:focus,
+  .cc-theme-background--color-darken_after::after,
+  .cc-theme-background--color-darken_after_hover:hover::after,
+  .cc-theme-background--color-darken_before::before,
+  input:checked + .cc-theme-background--color-darken_checked_before::before,
+  .cc-theme-background--color-darken_before_hover:hover::before,
+  .cc-theme-background--color-darken_after_before::after,
+  .cc-theme-background--color-darken_after_before::before,
+  .cc-theme-background--color-darken_after_before_hover:hover::after,
+  .cc-theme-background--color-darken_after_before_hover:hover::before {
+    background-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="border:color-darken;"],
+  [data-cc-theme*="border:color-darken[hover];"]:hover,
+  [data-cc-theme*="border:color-darken[focus];"]:focus,
+  [data-cc-theme*="border:color-darken[hover|focus];"]:hover,
+  [data-cc-theme*="border:color-darken[hover|focus];"]:focus,
+  [data-cc-theme*="border:color-darken[after];"]::after,
+  [data-cc-theme*="border:color-darken[after:hover];"]:hover::after,
+  [data-cc-theme*="border:color-darken[before];"]::before,
+  [data-cc-theme*="border:color-darken[before:hover];"]:hover::before,
+  [data-cc-theme*="border:color-darken[after|before];"]::after,
+  [data-cc-theme*="border:color-darken[after|before];"]::before,
+  [data-cc-theme*="border:color-darken[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border:color-darken[after|before:hover];"]:hover::before {
+    border-color:#000040 !important;
+  }
+
+  .cc-theme-border--color-darken,
+  .cc-theme-border--color-darken_hover:hover,
+  .cc-theme-border--color-darken_focus:focus,
+  .cc-theme-border--color-darken_hover_focus:hover,
+  .cc-theme-border--color-darken_hover_focus:focus,
+  .cc-theme-border--color-darken_after::after,
+  .cc-theme-border--color-darken_after_hover:hover::after,
+  .cc-theme-border--color-darken_before::before,
+  input:checked + .cc-theme-border--color-darken_checked_before::before,
+  .cc-theme-border--color-darken_before_hover:hover::before,
+  .cc-theme-border--color-darken_after_before::after,
+  .cc-theme-border--color-darken_after_before::before,
+  .cc-theme-border--color-darken_after_before_hover:hover::after,
+  .cc-theme-border--color-darken_after_before_hover:hover::before {
+    border-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="border-left:color-darken;"],
+  [data-cc-theme*="border-left:color-darken[hover];"]:hover,
+  [data-cc-theme*="border-left:color-darken[focus];"]:focus,
+  [data-cc-theme*="border-left:color-darken[hover|focus];"]:hover,
+  [data-cc-theme*="border-left:color-darken[hover|focus];"]:focus,
+  [data-cc-theme*="border-left:color-darken[after];"]::after,
+  [data-cc-theme*="border-left:color-darken[after:hover];"]:hover::after,
+  [data-cc-theme*="border-left:color-darken[before];"]::before,
+  [data-cc-theme*="border-left:color-darken[before:hover];"]:hover::before,
+  [data-cc-theme*="border-left:color-darken[after|before];"]::after,
+  [data-cc-theme*="border-left:color-darken[after|before];"]::before,
+  [data-cc-theme*="border-left:color-darken[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-left:color-darken[after|before:hover];"]:hover::before {
+    border-left-color:#000040 !important;
+  }
+
+  .cc-theme-border-left--color-darken,
+  .cc-theme-border-left--color-darken_hover:hover,
+  .cc-theme-border-left--color-darken_focus:focus,
+  .cc-theme-border-left--color-darken_hover_focus:hover,
+  .cc-theme-border-left--color-darken_hover_focus:focus,
+  .cc-theme-border-left--color-darken_after::after,
+  .cc-theme-border-left--color-darken_after_hover:hover::after,
+  .cc-theme-border-left--color-darken_before::before,
+  input:checked + .cc-theme-border-left--color-darken_checked_before::before,
+  .cc-theme-border-left--color-darken_before_hover:hover::before,
+  .cc-theme-border-left--color-darken_after_before::after,
+  .cc-theme-border-left--color-darken_after_before::before,
+  .cc-theme-border-left--color-darken_after_before_hover:hover::after,
+  .cc-theme-border-left--color-darken_after_before_hover:hover::before {
+    border-left-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="border-top:color-darken;"],
+  [data-cc-theme*="border-top:color-darken[hover];"]:hover,
+  [data-cc-theme*="border-top:color-darken[focus];"]:focus,
+  [data-cc-theme*="border-top:color-darken[hover|focus];"]:hover,
+  [data-cc-theme*="border-top:color-darken[hover|focus];"]:focus,
+  [data-cc-theme*="border-top:color-darken[after];"]::after,
+  [data-cc-theme*="border-top:color-darken[after:hover];"]:hover::after,
+  [data-cc-theme*="border-top:color-darken[before];"]::before,
+  [data-cc-theme*="border-top:color-darken[before:hover];"]:hover::before,
+  [data-cc-theme*="border-top:color-darken[after|before];"]::after,
+  [data-cc-theme*="border-top:color-darken[after|before];"]::before,
+  [data-cc-theme*="border-top:color-darken[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-top:color-darken[after|before:hover];"]:hover::before {
+    border-top-color:#000040 !important;
+  }
+
+  .cc-theme-border-top--color-darken,
+  .cc-theme-border-top--color-darken_hover:hover,
+  .cc-theme-border-top--color-darken_focus:focus,
+  .cc-theme-border-top--color-darken_hover_focus:hover,
+  .cc-theme-border-top--color-darken_hover_focus:focus,
+  .cc-theme-border-top--color-darken_after::after,
+  .cc-theme-border-top--color-darken_after_hover:hover::after,
+  .cc-theme-border-top--color-darken_before::before,
+  input:checked + .cc-theme-border-top--color-darken_checked_before::before,
+  .cc-theme-border-top--color-darken_before_hover:hover::before,
+  .cc-theme-border-top--color-darken_after_before::after,
+  .cc-theme-border-top--color-darken_after_before::before,
+  .cc-theme-border-top--color-darken_after_before_hover:hover::after,
+  .cc-theme-border-top--color-darken_after_before_hover:hover::before {
+    border-top-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="border-bottom:color-darken;"],
+  [data-cc-theme*="border-bottom:color-darken[hover];"]:hover,
+  [data-cc-theme*="border-bottom:color-darken[focus];"]:focus,
+  [data-cc-theme*="border-bottom:color-darken[hover|focus];"]:hover,
+  [data-cc-theme*="border-bottom:color-darken[hover|focus];"]:focus,
+  [data-cc-theme*="border-bottom:color-darken[after];"]::after,
+  [data-cc-theme*="border-bottom:color-darken[after:hover];"]:hover::after,
+  [data-cc-theme*="border-bottom:color-darken[before];"]::before,
+  [data-cc-theme*="border-bottom:color-darken[before:hover];"]:hover::before,
+  [data-cc-theme*="border-bottom:color-darken[after|before];"]::after,
+  [data-cc-theme*="border-bottom:color-darken[after|before];"]::before,
+  [data-cc-theme*="border-bottom:color-darken[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-bottom:color-darken[after|before:hover];"]:hover::before {
+    border-bottom-color:#000040 !important;
+  }
+
+  .cc-theme-border-bottom--color-darken,
+  .cc-theme-border-bottom--color-darken_hover:hover,
+  .cc-theme-border-bottom--color-darken_focus:focus,
+  .cc-theme-border-bottom--color-darken_hover_focus:hover,
+  .cc-theme-border-bottom--color-darken_hover_focus:focus,
+  .cc-theme-border-bottom--color-darken_after::after,
+  .cc-theme-border-bottom--color-darken_after_hover:hover::after,
+  .cc-theme-border-bottom--color-darken_before::before,
+  input:checked + .cc-theme-border-bottom--color-darken_checked_before::before,
+  .cc-theme-border-bottom--color-darken_before_hover:hover::before,
+  .cc-theme-border-bottom--color-darken_after_before::after,
+  .cc-theme-border-bottom--color-darken_after_before::before,
+  .cc-theme-border-bottom--color-darken_after_before_hover:hover::after,
+  .cc-theme-border-bottom--color-darken_after_before_hover:hover::before {
+    border-bottom-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="fill:color-darken;"],
+  [data-cc-theme*="fill:color-darken[hover];"]:hover,
+  [data-cc-theme*="fill:color-darken[focus];"]:focus,
+  [data-cc-theme*="fill:color-darken[hover|focus];"]:hover,
+  [data-cc-theme*="fill:color-darken[hover|focus];"]:focus,
+  [data-cc-theme*="fill:color-darken[after];"]::after,
+  [data-cc-theme*="fill:color-darken[after:hover];"]:hover::after,
+  [data-cc-theme*="fill:color-darken[before];"]::before,
+  [data-cc-theme*="fill:color-darken[before:hover];"]:hover::before,
+  [data-cc-theme*="fill:color-darken[after|before];"]::after,
+  [data-cc-theme*="fill:color-darken[after|before];"]::before,
+  [data-cc-theme*="fill:color-darken[after|before:hover];"]:hover::after,
+  [data-cc-theme*="fill:color-darken[after|before:hover];"]:hover::before {
+    fill:#000040 !important;
+  }
+
+  .cc-theme-fill--color-darken,
+  .cc-theme-fill--color-darken_hover:hover,
+  .cc-theme-fill--color-darken_focus:focus,
+  .cc-theme-fill--color-darken_hover_focus:hover,
+  .cc-theme-fill--color-darken_hover_focus:focus,
+  .cc-theme-fill--color-darken_after::after,
+  .cc-theme-fill--color-darken_after_hover:hover::after,
+  .cc-theme-fill--color-darken_before::before,
+  input:checked + .cc-theme-fill--color-darken_checked_before::before,
+  .cc-theme-fill--color-darken_before_hover:hover::before,
+  .cc-theme-fill--color-darken_after_before::after,
+  .cc-theme-fill--color-darken_after_before::before,
+  .cc-theme-fill--color-darken_after_before_hover:hover::after,
+  .cc-theme-fill--color-darken_after_before_hover:hover::before {
+    fill:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="stroke:color-darken;"],
+  [data-cc-theme*="stroke:color-darken[hover];"]:hover,
+  [data-cc-theme*="stroke:color-darken[focus];"]:focus,
+  [data-cc-theme*="stroke:color-darken[hover|focus];"]:hover,
+  [data-cc-theme*="stroke:color-darken[hover|focus];"]:focus,
+  [data-cc-theme*="stroke:color-darken[after];"]::after,
+  [data-cc-theme*="stroke:color-darken[after:hover];"]:hover::after,
+  [data-cc-theme*="stroke:color-darken[before];"]::before,
+  [data-cc-theme*="stroke:color-darken[before:hover];"]:hover::before,
+  [data-cc-theme*="stroke:color-darken[after|before];"]::after,
+  [data-cc-theme*="stroke:color-darken[after|before];"]::before,
+  [data-cc-theme*="stroke:color-darken[after|before:hover];"]:hover::after,
+  [data-cc-theme*="stroke:color-darken[after|before:hover];"]:hover::before {
+    stroke:#000040 !important;
+  }
+
+  .cc-theme-stroke--color-darken,
+  .cc-theme-stroke--color-darken_hover:hover,
+  .cc-theme-stroke--color-darken_focus:focus,
+  .cc-theme-stroke--color-darken_hover_focus:hover,
+  .cc-theme-stroke--color-darken_hover_focus:focus,
+  .cc-theme-stroke--color-darken_after::after,
+  .cc-theme-stroke--color-darken_after_hover:hover::after,
+  .cc-theme-stroke--color-darken_before::before,
+  input:checked + .cc-theme-stroke--color-darken_checked_before::before,
+  .cc-theme-stroke--color-darken_before_hover:hover::before,
+  .cc-theme-stroke--color-darken_after_before::after,
+  .cc-theme-stroke--color-darken_after_before::before,
+  .cc-theme-stroke--color-darken_after_before_hover:hover::after,
+  .cc-theme-stroke--color-darken_after_before_hover:hover::before {
+    stroke:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="stop-color:color-darken;"],
+  [data-cc-theme*="stop-color:color-darken[hover];"]:hover,
+  [data-cc-theme*="stop-color:color-darken[focus];"]:focus,
+  [data-cc-theme*="stop-color:color-darken[hover|focus];"]:hover,
+  [data-cc-theme*="stop-color:color-darken[hover|focus];"]:focus,
+  [data-cc-theme*="stop-color:color-darken[after];"]::after,
+  [data-cc-theme*="stop-color:color-darken[after:hover];"]:hover::after,
+  [data-cc-theme*="stop-color:color-darken[before];"]::before,
+  [data-cc-theme*="stop-color:color-darken[before:hover];"]:hover::before,
+  [data-cc-theme*="stop-color:color-darken[after|before];"]::after,
+  [data-cc-theme*="stop-color:color-darken[after|before];"]::before,
+  [data-cc-theme*="stop-color:color-darken[after|before:hover];"]:hover::after,
+  [data-cc-theme*="stop-color:color-darken[after|before:hover];"]:hover::before {
+    stop-color:#000040 !important;
+  }
+
+  .cc-theme-stop-color--color-darken,
+  .cc-theme-stop-color--color-darken_hover:hover,
+  .cc-theme-stop-color--color-darken_focus:focus,
+  .cc-theme-stop-color--color-darken_hover_focus:hover,
+  .cc-theme-stop-color--color-darken_hover_focus:focus,
+  .cc-theme-stop-color--color-darken_after::after,
+  .cc-theme-stop-color--color-darken_after_hover:hover::after,
+  .cc-theme-stop-color--color-darken_before::before,
+  input:checked + .cc-theme-stop-color--color-darken_checked_before::before,
+  .cc-theme-stop-color--color-darken_before_hover:hover::before,
+  .cc-theme-stop-color--color-darken_after_before::after,
+  .cc-theme-stop-color--color-darken_after_before::before,
+  .cc-theme-stop-color--color-darken_after_before_hover:hover::after,
+  .cc-theme-stop-color--color-darken_after_before_hover:hover::before {
+    stop-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="color:text;"],
+  [data-cc-theme*="color:text[hover];"]:hover,
+  [data-cc-theme*="color:text[focus];"]:focus,
+  [data-cc-theme*="color:text[hover|focus];"]:hover,
+  [data-cc-theme*="color:text[hover|focus];"]:focus,
+  [data-cc-theme*="color:text[after];"]::after,
+  [data-cc-theme*="color:text[after:hover];"]:hover::after,
+  [data-cc-theme*="color:text[before];"]::before,
+  [data-cc-theme*="color:text[before:hover];"]:hover::before,
+  [data-cc-theme*="color:text[after|before];"]::after,
+  [data-cc-theme*="color:text[after|before];"]::before,
+  [data-cc-theme*="color:text[after|before:hover];"]:hover::after,
+  [data-cc-theme*="color:text[after|before:hover];"]:hover::before {
+    color:#000040 !important;
+  }
+
+  .cc-theme-color--text,
+  .cc-theme-color--text_hover:hover,
+  .cc-theme-color--text_focus:focus,
+  .cc-theme-color--text_hover_focus:hover,
+  .cc-theme-color--text_hover_focus:focus,
+  .cc-theme-color--text_after::after,
+  .cc-theme-color--text_after_hover:hover::after,
+  .cc-theme-color--text_before::before,
+  input:checked + .cc-theme-color--text_checked_before::before,
+  .cc-theme-color--text_before_hover:hover::before,
+  .cc-theme-color--text_after_before::after,
+  .cc-theme-color--text_after_before::before,
+  .cc-theme-color--text_after_before_hover:hover::after,
+  .cc-theme-color--text_after_before_hover:hover::before {
+    color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="background:text;"],
+  [data-cc-theme*="background:text[hover];"]:hover,
+  [data-cc-theme*="background:text[focus];"]:focus,
+  [data-cc-theme*="background:text[hover|focus];"]:hover,
+  [data-cc-theme*="background:text[hover|focus];"]:focus,
+  [data-cc-theme*="background:text[after];"]::after,
+  [data-cc-theme*="background:text[after:hover];"]:hover::after,
+  [data-cc-theme*="background:text[before];"]::before,
+  [data-cc-theme*="background:text[before:hover];"]:hover::before,
+  [data-cc-theme*="background:text[after|before];"]::after,
+  [data-cc-theme*="background:text[after|before];"]::before,
+  [data-cc-theme*="background:text[after|before:hover];"]:hover::after,
+  [data-cc-theme*="background:text[after|before:hover];"]:hover::before {
+    background-color:#000040 !important;
+  }
+
+  .cc-theme-background--text,
+  .cc-theme-background--text_hover:hover,
+  .cc-theme-background--text_focus:focus,
+  .cc-theme-background--text_hover_focus:hover,
+  .cc-theme-background--text_hover_focus:focus,
+  .cc-theme-background--text_after::after,
+  .cc-theme-background--text_after_hover:hover::after,
+  .cc-theme-background--text_before::before,
+  input:checked + .cc-theme-background--text_checked_before::before,
+  .cc-theme-background--text_before_hover:hover::before,
+  .cc-theme-background--text_after_before::after,
+  .cc-theme-background--text_after_before::before,
+  .cc-theme-background--text_after_before_hover:hover::after,
+  .cc-theme-background--text_after_before_hover:hover::before {
+    background-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="border:text;"],
+  [data-cc-theme*="border:text[hover];"]:hover,
+  [data-cc-theme*="border:text[focus];"]:focus,
+  [data-cc-theme*="border:text[hover|focus];"]:hover,
+  [data-cc-theme*="border:text[hover|focus];"]:focus,
+  [data-cc-theme*="border:text[after];"]::after,
+  [data-cc-theme*="border:text[after:hover];"]:hover::after,
+  [data-cc-theme*="border:text[before];"]::before,
+  [data-cc-theme*="border:text[before:hover];"]:hover::before,
+  [data-cc-theme*="border:text[after|before];"]::after,
+  [data-cc-theme*="border:text[after|before];"]::before,
+  [data-cc-theme*="border:text[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border:text[after|before:hover];"]:hover::before {
+    border-color:#000040 !important;
+  }
+
+  .cc-theme-border--text,
+  .cc-theme-border--text_hover:hover,
+  .cc-theme-border--text_focus:focus,
+  .cc-theme-border--text_hover_focus:hover,
+  .cc-theme-border--text_hover_focus:focus,
+  .cc-theme-border--text_after::after,
+  .cc-theme-border--text_after_hover:hover::after,
+  .cc-theme-border--text_before::before,
+  input:checked + .cc-theme-border--text_checked_before::before,
+  .cc-theme-border--text_before_hover:hover::before,
+  .cc-theme-border--text_after_before::after,
+  .cc-theme-border--text_after_before::before,
+  .cc-theme-border--text_after_before_hover:hover::after,
+  .cc-theme-border--text_after_before_hover:hover::before {
+    border-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="border-left:text;"],
+  [data-cc-theme*="border-left:text[hover];"]:hover,
+  [data-cc-theme*="border-left:text[focus];"]:focus,
+  [data-cc-theme*="border-left:text[hover|focus];"]:hover,
+  [data-cc-theme*="border-left:text[hover|focus];"]:focus,
+  [data-cc-theme*="border-left:text[after];"]::after,
+  [data-cc-theme*="border-left:text[after:hover];"]:hover::after,
+  [data-cc-theme*="border-left:text[before];"]::before,
+  [data-cc-theme*="border-left:text[before:hover];"]:hover::before,
+  [data-cc-theme*="border-left:text[after|before];"]::after,
+  [data-cc-theme*="border-left:text[after|before];"]::before,
+  [data-cc-theme*="border-left:text[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-left:text[after|before:hover];"]:hover::before {
+    border-left-color:#000040 !important;
+  }
+
+  .cc-theme-border-left--text,
+  .cc-theme-border-left--text_hover:hover,
+  .cc-theme-border-left--text_focus:focus,
+  .cc-theme-border-left--text_hover_focus:hover,
+  .cc-theme-border-left--text_hover_focus:focus,
+  .cc-theme-border-left--text_after::after,
+  .cc-theme-border-left--text_after_hover:hover::after,
+  .cc-theme-border-left--text_before::before,
+  input:checked + .cc-theme-border-left--text_checked_before::before,
+  .cc-theme-border-left--text_before_hover:hover::before,
+  .cc-theme-border-left--text_after_before::after,
+  .cc-theme-border-left--text_after_before::before,
+  .cc-theme-border-left--text_after_before_hover:hover::after,
+  .cc-theme-border-left--text_after_before_hover:hover::before {
+    border-left-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="border-top:text;"],
+  [data-cc-theme*="border-top:text[hover];"]:hover,
+  [data-cc-theme*="border-top:text[focus];"]:focus,
+  [data-cc-theme*="border-top:text[hover|focus];"]:hover,
+  [data-cc-theme*="border-top:text[hover|focus];"]:focus,
+  [data-cc-theme*="border-top:text[after];"]::after,
+  [data-cc-theme*="border-top:text[after:hover];"]:hover::after,
+  [data-cc-theme*="border-top:text[before];"]::before,
+  [data-cc-theme*="border-top:text[before:hover];"]:hover::before,
+  [data-cc-theme*="border-top:text[after|before];"]::after,
+  [data-cc-theme*="border-top:text[after|before];"]::before,
+  [data-cc-theme*="border-top:text[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-top:text[after|before:hover];"]:hover::before {
+    border-top-color:#000040 !important;
+  }
+
+  .cc-theme-border-top--text,
+  .cc-theme-border-top--text_hover:hover,
+  .cc-theme-border-top--text_focus:focus,
+  .cc-theme-border-top--text_hover_focus:hover,
+  .cc-theme-border-top--text_hover_focus:focus,
+  .cc-theme-border-top--text_after::after,
+  .cc-theme-border-top--text_after_hover:hover::after,
+  .cc-theme-border-top--text_before::before,
+  input:checked + .cc-theme-border-top--text_checked_before::before,
+  .cc-theme-border-top--text_before_hover:hover::before,
+  .cc-theme-border-top--text_after_before::after,
+  .cc-theme-border-top--text_after_before::before,
+  .cc-theme-border-top--text_after_before_hover:hover::after,
+  .cc-theme-border-top--text_after_before_hover:hover::before {
+    border-top-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="border-bottom:text;"],
+  [data-cc-theme*="border-bottom:text[hover];"]:hover,
+  [data-cc-theme*="border-bottom:text[focus];"]:focus,
+  [data-cc-theme*="border-bottom:text[hover|focus];"]:hover,
+  [data-cc-theme*="border-bottom:text[hover|focus];"]:focus,
+  [data-cc-theme*="border-bottom:text[after];"]::after,
+  [data-cc-theme*="border-bottom:text[after:hover];"]:hover::after,
+  [data-cc-theme*="border-bottom:text[before];"]::before,
+  [data-cc-theme*="border-bottom:text[before:hover];"]:hover::before,
+  [data-cc-theme*="border-bottom:text[after|before];"]::after,
+  [data-cc-theme*="border-bottom:text[after|before];"]::before,
+  [data-cc-theme*="border-bottom:text[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-bottom:text[after|before:hover];"]:hover::before {
+    border-bottom-color:#000040 !important;
+  }
+
+  .cc-theme-border-bottom--text,
+  .cc-theme-border-bottom--text_hover:hover,
+  .cc-theme-border-bottom--text_focus:focus,
+  .cc-theme-border-bottom--text_hover_focus:hover,
+  .cc-theme-border-bottom--text_hover_focus:focus,
+  .cc-theme-border-bottom--text_after::after,
+  .cc-theme-border-bottom--text_after_hover:hover::after,
+  .cc-theme-border-bottom--text_before::before,
+  input:checked + .cc-theme-border-bottom--text_checked_before::before,
+  .cc-theme-border-bottom--text_before_hover:hover::before,
+  .cc-theme-border-bottom--text_after_before::after,
+  .cc-theme-border-bottom--text_after_before::before,
+  .cc-theme-border-bottom--text_after_before_hover:hover::after,
+  .cc-theme-border-bottom--text_after_before_hover:hover::before {
+    border-bottom-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="fill:text;"],
+  [data-cc-theme*="fill:text[hover];"]:hover,
+  [data-cc-theme*="fill:text[focus];"]:focus,
+  [data-cc-theme*="fill:text[hover|focus];"]:hover,
+  [data-cc-theme*="fill:text[hover|focus];"]:focus,
+  [data-cc-theme*="fill:text[after];"]::after,
+  [data-cc-theme*="fill:text[after:hover];"]:hover::after,
+  [data-cc-theme*="fill:text[before];"]::before,
+  [data-cc-theme*="fill:text[before:hover];"]:hover::before,
+  [data-cc-theme*="fill:text[after|before];"]::after,
+  [data-cc-theme*="fill:text[after|before];"]::before,
+  [data-cc-theme*="fill:text[after|before:hover];"]:hover::after,
+  [data-cc-theme*="fill:text[after|before:hover];"]:hover::before {
+    fill:#000040 !important;
+  }
+
+  .cc-theme-fill--text,
+  .cc-theme-fill--text_hover:hover,
+  .cc-theme-fill--text_focus:focus,
+  .cc-theme-fill--text_hover_focus:hover,
+  .cc-theme-fill--text_hover_focus:focus,
+  .cc-theme-fill--text_after::after,
+  .cc-theme-fill--text_after_hover:hover::after,
+  .cc-theme-fill--text_before::before,
+  input:checked + .cc-theme-fill--text_checked_before::before,
+  .cc-theme-fill--text_before_hover:hover::before,
+  .cc-theme-fill--text_after_before::after,
+  .cc-theme-fill--text_after_before::before,
+  .cc-theme-fill--text_after_before_hover:hover::after,
+  .cc-theme-fill--text_after_before_hover:hover::before {
+    fill:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="stroke:text;"],
+  [data-cc-theme*="stroke:text[hover];"]:hover,
+  [data-cc-theme*="stroke:text[focus];"]:focus,
+  [data-cc-theme*="stroke:text[hover|focus];"]:hover,
+  [data-cc-theme*="stroke:text[hover|focus];"]:focus,
+  [data-cc-theme*="stroke:text[after];"]::after,
+  [data-cc-theme*="stroke:text[after:hover];"]:hover::after,
+  [data-cc-theme*="stroke:text[before];"]::before,
+  [data-cc-theme*="stroke:text[before:hover];"]:hover::before,
+  [data-cc-theme*="stroke:text[after|before];"]::after,
+  [data-cc-theme*="stroke:text[after|before];"]::before,
+  [data-cc-theme*="stroke:text[after|before:hover];"]:hover::after,
+  [data-cc-theme*="stroke:text[after|before:hover];"]:hover::before {
+    stroke:#000040 !important;
+  }
+
+  .cc-theme-stroke--text,
+  .cc-theme-stroke--text_hover:hover,
+  .cc-theme-stroke--text_focus:focus,
+  .cc-theme-stroke--text_hover_focus:hover,
+  .cc-theme-stroke--text_hover_focus:focus,
+  .cc-theme-stroke--text_after::after,
+  .cc-theme-stroke--text_after_hover:hover::after,
+  .cc-theme-stroke--text_before::before,
+  input:checked + .cc-theme-stroke--text_checked_before::before,
+  .cc-theme-stroke--text_before_hover:hover::before,
+  .cc-theme-stroke--text_after_before::after,
+  .cc-theme-stroke--text_after_before::before,
+  .cc-theme-stroke--text_after_before_hover:hover::after,
+  .cc-theme-stroke--text_after_before_hover:hover::before {
+    stroke:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="stop-color:text;"],
+  [data-cc-theme*="stop-color:text[hover];"]:hover,
+  [data-cc-theme*="stop-color:text[focus];"]:focus,
+  [data-cc-theme*="stop-color:text[hover|focus];"]:hover,
+  [data-cc-theme*="stop-color:text[hover|focus];"]:focus,
+  [data-cc-theme*="stop-color:text[after];"]::after,
+  [data-cc-theme*="stop-color:text[after:hover];"]:hover::after,
+  [data-cc-theme*="stop-color:text[before];"]::before,
+  [data-cc-theme*="stop-color:text[before:hover];"]:hover::before,
+  [data-cc-theme*="stop-color:text[after|before];"]::after,
+  [data-cc-theme*="stop-color:text[after|before];"]::before,
+  [data-cc-theme*="stop-color:text[after|before:hover];"]:hover::after,
+  [data-cc-theme*="stop-color:text[after|before:hover];"]:hover::before {
+    stop-color:#000040 !important;
+  }
+
+  .cc-theme-stop-color--text,
+  .cc-theme-stop-color--text_hover:hover,
+  .cc-theme-stop-color--text_focus:focus,
+  .cc-theme-stop-color--text_hover_focus:hover,
+  .cc-theme-stop-color--text_hover_focus:focus,
+  .cc-theme-stop-color--text_after::after,
+  .cc-theme-stop-color--text_after_hover:hover::after,
+  .cc-theme-stop-color--text_before::before,
+  input:checked + .cc-theme-stop-color--text_checked_before::before,
+  .cc-theme-stop-color--text_before_hover:hover::before,
+  .cc-theme-stop-color--text_after_before::after,
+  .cc-theme-stop-color--text_after_before::before,
+  .cc-theme-stop-color--text_after_before_hover:hover::after,
+  .cc-theme-stop-color--text_after_before_hover:hover::before {
+    stop-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="color:text-btn;"],
+  [data-cc-theme*="color:text-btn[hover];"]:hover,
+  [data-cc-theme*="color:text-btn[focus];"]:focus,
+  [data-cc-theme*="color:text-btn[hover|focus];"]:hover,
+  [data-cc-theme*="color:text-btn[hover|focus];"]:focus,
+  [data-cc-theme*="color:text-btn[after];"]::after,
+  [data-cc-theme*="color:text-btn[after:hover];"]:hover::after,
+  [data-cc-theme*="color:text-btn[before];"]::before,
+  [data-cc-theme*="color:text-btn[before:hover];"]:hover::before,
+  [data-cc-theme*="color:text-btn[after|before];"]::after,
+  [data-cc-theme*="color:text-btn[after|before];"]::before,
+  [data-cc-theme*="color:text-btn[after|before:hover];"]:hover::after,
+  [data-cc-theme*="color:text-btn[after|before:hover];"]:hover::before {
+    color:#ffffff !important;
+  }
+
+  .cc-theme-color--text-btn,
+  .cc-theme-color--text-btn_hover:hover,
+  .cc-theme-color--text-btn_focus:focus,
+  .cc-theme-color--text-btn_hover_focus:hover,
+  .cc-theme-color--text-btn_hover_focus:focus,
+  .cc-theme-color--text-btn_after::after,
+  .cc-theme-color--text-btn_after_hover:hover::after,
+  .cc-theme-color--text-btn_before::before,
+  input:checked + .cc-theme-color--text-btn_checked_before::before,
+  .cc-theme-color--text-btn_before_hover:hover::before,
+  .cc-theme-color--text-btn_after_before::after,
+  .cc-theme-color--text-btn_after_before::before,
+  .cc-theme-color--text-btn_after_before_hover:hover::after,
+  .cc-theme-color--text-btn_after_before_hover:hover::before {
+    color:#ffffff !important;
+  }
+
+
+
+  [data-cc-theme*="background:text-btn;"],
+  [data-cc-theme*="background:text-btn[hover];"]:hover,
+  [data-cc-theme*="background:text-btn[focus];"]:focus,
+  [data-cc-theme*="background:text-btn[hover|focus];"]:hover,
+  [data-cc-theme*="background:text-btn[hover|focus];"]:focus,
+  [data-cc-theme*="background:text-btn[after];"]::after,
+  [data-cc-theme*="background:text-btn[after:hover];"]:hover::after,
+  [data-cc-theme*="background:text-btn[before];"]::before,
+  [data-cc-theme*="background:text-btn[before:hover];"]:hover::before,
+  [data-cc-theme*="background:text-btn[after|before];"]::after,
+  [data-cc-theme*="background:text-btn[after|before];"]::before,
+  [data-cc-theme*="background:text-btn[after|before:hover];"]:hover::after,
+  [data-cc-theme*="background:text-btn[after|before:hover];"]:hover::before {
+    background-color:#ffffff !important;
+  }
+
+  .cc-theme-background--text-btn,
+  .cc-theme-background--text-btn_hover:hover,
+  .cc-theme-background--text-btn_focus:focus,
+  .cc-theme-background--text-btn_hover_focus:hover,
+  .cc-theme-background--text-btn_hover_focus:focus,
+  .cc-theme-background--text-btn_after::after,
+  .cc-theme-background--text-btn_after_hover:hover::after,
+  .cc-theme-background--text-btn_before::before,
+  input:checked + .cc-theme-background--text-btn_checked_before::before,
+  .cc-theme-background--text-btn_before_hover:hover::before,
+  .cc-theme-background--text-btn_after_before::after,
+  .cc-theme-background--text-btn_after_before::before,
+  .cc-theme-background--text-btn_after_before_hover:hover::after,
+  .cc-theme-background--text-btn_after_before_hover:hover::before {
+    background-color:#ffffff !important;
+  }
+
+
+
+  [data-cc-theme*="border:text-btn;"],
+  [data-cc-theme*="border:text-btn[hover];"]:hover,
+  [data-cc-theme*="border:text-btn[focus];"]:focus,
+  [data-cc-theme*="border:text-btn[hover|focus];"]:hover,
+  [data-cc-theme*="border:text-btn[hover|focus];"]:focus,
+  [data-cc-theme*="border:text-btn[after];"]::after,
+  [data-cc-theme*="border:text-btn[after:hover];"]:hover::after,
+  [data-cc-theme*="border:text-btn[before];"]::before,
+  [data-cc-theme*="border:text-btn[before:hover];"]:hover::before,
+  [data-cc-theme*="border:text-btn[after|before];"]::after,
+  [data-cc-theme*="border:text-btn[after|before];"]::before,
+  [data-cc-theme*="border:text-btn[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border:text-btn[after|before:hover];"]:hover::before {
+    border-color:#ffffff !important;
+  }
+
+  .cc-theme-border--text-btn,
+  .cc-theme-border--text-btn_hover:hover,
+  .cc-theme-border--text-btn_focus:focus,
+  .cc-theme-border--text-btn_hover_focus:hover,
+  .cc-theme-border--text-btn_hover_focus:focus,
+  .cc-theme-border--text-btn_after::after,
+  .cc-theme-border--text-btn_after_hover:hover::after,
+  .cc-theme-border--text-btn_before::before,
+  input:checked + .cc-theme-border--text-btn_checked_before::before,
+  .cc-theme-border--text-btn_before_hover:hover::before,
+  .cc-theme-border--text-btn_after_before::after,
+  .cc-theme-border--text-btn_after_before::before,
+  .cc-theme-border--text-btn_after_before_hover:hover::after,
+  .cc-theme-border--text-btn_after_before_hover:hover::before {
+    border-color:#ffffff !important;
+  }
+
+
+
+  [data-cc-theme*="border-left:text-btn;"],
+  [data-cc-theme*="border-left:text-btn[hover];"]:hover,
+  [data-cc-theme*="border-left:text-btn[focus];"]:focus,
+  [data-cc-theme*="border-left:text-btn[hover|focus];"]:hover,
+  [data-cc-theme*="border-left:text-btn[hover|focus];"]:focus,
+  [data-cc-theme*="border-left:text-btn[after];"]::after,
+  [data-cc-theme*="border-left:text-btn[after:hover];"]:hover::after,
+  [data-cc-theme*="border-left:text-btn[before];"]::before,
+  [data-cc-theme*="border-left:text-btn[before:hover];"]:hover::before,
+  [data-cc-theme*="border-left:text-btn[after|before];"]::after,
+  [data-cc-theme*="border-left:text-btn[after|before];"]::before,
+  [data-cc-theme*="border-left:text-btn[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-left:text-btn[after|before:hover];"]:hover::before {
+    border-left-color:#ffffff !important;
+  }
+
+  .cc-theme-border-left--text-btn,
+  .cc-theme-border-left--text-btn_hover:hover,
+  .cc-theme-border-left--text-btn_focus:focus,
+  .cc-theme-border-left--text-btn_hover_focus:hover,
+  .cc-theme-border-left--text-btn_hover_focus:focus,
+  .cc-theme-border-left--text-btn_after::after,
+  .cc-theme-border-left--text-btn_after_hover:hover::after,
+  .cc-theme-border-left--text-btn_before::before,
+  input:checked + .cc-theme-border-left--text-btn_checked_before::before,
+  .cc-theme-border-left--text-btn_before_hover:hover::before,
+  .cc-theme-border-left--text-btn_after_before::after,
+  .cc-theme-border-left--text-btn_after_before::before,
+  .cc-theme-border-left--text-btn_after_before_hover:hover::after,
+  .cc-theme-border-left--text-btn_after_before_hover:hover::before {
+    border-left-color:#ffffff !important;
+  }
+
+
+
+  [data-cc-theme*="border-top:text-btn;"],
+  [data-cc-theme*="border-top:text-btn[hover];"]:hover,
+  [data-cc-theme*="border-top:text-btn[focus];"]:focus,
+  [data-cc-theme*="border-top:text-btn[hover|focus];"]:hover,
+  [data-cc-theme*="border-top:text-btn[hover|focus];"]:focus,
+  [data-cc-theme*="border-top:text-btn[after];"]::after,
+  [data-cc-theme*="border-top:text-btn[after:hover];"]:hover::after,
+  [data-cc-theme*="border-top:text-btn[before];"]::before,
+  [data-cc-theme*="border-top:text-btn[before:hover];"]:hover::before,
+  [data-cc-theme*="border-top:text-btn[after|before];"]::after,
+  [data-cc-theme*="border-top:text-btn[after|before];"]::before,
+  [data-cc-theme*="border-top:text-btn[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-top:text-btn[after|before:hover];"]:hover::before {
+    border-top-color:#ffffff !important;
+  }
+
+  .cc-theme-border-top--text-btn,
+  .cc-theme-border-top--text-btn_hover:hover,
+  .cc-theme-border-top--text-btn_focus:focus,
+  .cc-theme-border-top--text-btn_hover_focus:hover,
+  .cc-theme-border-top--text-btn_hover_focus:focus,
+  .cc-theme-border-top--text-btn_after::after,
+  .cc-theme-border-top--text-btn_after_hover:hover::after,
+  .cc-theme-border-top--text-btn_before::before,
+  input:checked + .cc-theme-border-top--text-btn_checked_before::before,
+  .cc-theme-border-top--text-btn_before_hover:hover::before,
+  .cc-theme-border-top--text-btn_after_before::after,
+  .cc-theme-border-top--text-btn_after_before::before,
+  .cc-theme-border-top--text-btn_after_before_hover:hover::after,
+  .cc-theme-border-top--text-btn_after_before_hover:hover::before {
+    border-top-color:#ffffff !important;
+  }
+
+
+
+  [data-cc-theme*="border-bottom:text-btn;"],
+  [data-cc-theme*="border-bottom:text-btn[hover];"]:hover,
+  [data-cc-theme*="border-bottom:text-btn[focus];"]:focus,
+  [data-cc-theme*="border-bottom:text-btn[hover|focus];"]:hover,
+  [data-cc-theme*="border-bottom:text-btn[hover|focus];"]:focus,
+  [data-cc-theme*="border-bottom:text-btn[after];"]::after,
+  [data-cc-theme*="border-bottom:text-btn[after:hover];"]:hover::after,
+  [data-cc-theme*="border-bottom:text-btn[before];"]::before,
+  [data-cc-theme*="border-bottom:text-btn[before:hover];"]:hover::before,
+  [data-cc-theme*="border-bottom:text-btn[after|before];"]::after,
+  [data-cc-theme*="border-bottom:text-btn[after|before];"]::before,
+  [data-cc-theme*="border-bottom:text-btn[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-bottom:text-btn[after|before:hover];"]:hover::before {
+    border-bottom-color:#ffffff !important;
+  }
+
+  .cc-theme-border-bottom--text-btn,
+  .cc-theme-border-bottom--text-btn_hover:hover,
+  .cc-theme-border-bottom--text-btn_focus:focus,
+  .cc-theme-border-bottom--text-btn_hover_focus:hover,
+  .cc-theme-border-bottom--text-btn_hover_focus:focus,
+  .cc-theme-border-bottom--text-btn_after::after,
+  .cc-theme-border-bottom--text-btn_after_hover:hover::after,
+  .cc-theme-border-bottom--text-btn_before::before,
+  input:checked + .cc-theme-border-bottom--text-btn_checked_before::before,
+  .cc-theme-border-bottom--text-btn_before_hover:hover::before,
+  .cc-theme-border-bottom--text-btn_after_before::after,
+  .cc-theme-border-bottom--text-btn_after_before::before,
+  .cc-theme-border-bottom--text-btn_after_before_hover:hover::after,
+  .cc-theme-border-bottom--text-btn_after_before_hover:hover::before {
+    border-bottom-color:#ffffff !important;
+  }
+
+
+
+  [data-cc-theme*="fill:text-btn;"],
+  [data-cc-theme*="fill:text-btn[hover];"]:hover,
+  [data-cc-theme*="fill:text-btn[focus];"]:focus,
+  [data-cc-theme*="fill:text-btn[hover|focus];"]:hover,
+  [data-cc-theme*="fill:text-btn[hover|focus];"]:focus,
+  [data-cc-theme*="fill:text-btn[after];"]::after,
+  [data-cc-theme*="fill:text-btn[after:hover];"]:hover::after,
+  [data-cc-theme*="fill:text-btn[before];"]::before,
+  [data-cc-theme*="fill:text-btn[before:hover];"]:hover::before,
+  [data-cc-theme*="fill:text-btn[after|before];"]::after,
+  [data-cc-theme*="fill:text-btn[after|before];"]::before,
+  [data-cc-theme*="fill:text-btn[after|before:hover];"]:hover::after,
+  [data-cc-theme*="fill:text-btn[after|before:hover];"]:hover::before {
+    fill:#ffffff !important;
+  }
+
+  .cc-theme-fill--text-btn,
+  .cc-theme-fill--text-btn_hover:hover,
+  .cc-theme-fill--text-btn_focus:focus,
+  .cc-theme-fill--text-btn_hover_focus:hover,
+  .cc-theme-fill--text-btn_hover_focus:focus,
+  .cc-theme-fill--text-btn_after::after,
+  .cc-theme-fill--text-btn_after_hover:hover::after,
+  .cc-theme-fill--text-btn_before::before,
+  input:checked + .cc-theme-fill--text-btn_checked_before::before,
+  .cc-theme-fill--text-btn_before_hover:hover::before,
+  .cc-theme-fill--text-btn_after_before::after,
+  .cc-theme-fill--text-btn_after_before::before,
+  .cc-theme-fill--text-btn_after_before_hover:hover::after,
+  .cc-theme-fill--text-btn_after_before_hover:hover::before {
+    fill:#ffffff !important;
+  }
+
+
+
+  [data-cc-theme*="stroke:text-btn;"],
+  [data-cc-theme*="stroke:text-btn[hover];"]:hover,
+  [data-cc-theme*="stroke:text-btn[focus];"]:focus,
+  [data-cc-theme*="stroke:text-btn[hover|focus];"]:hover,
+  [data-cc-theme*="stroke:text-btn[hover|focus];"]:focus,
+  [data-cc-theme*="stroke:text-btn[after];"]::after,
+  [data-cc-theme*="stroke:text-btn[after:hover];"]:hover::after,
+  [data-cc-theme*="stroke:text-btn[before];"]::before,
+  [data-cc-theme*="stroke:text-btn[before:hover];"]:hover::before,
+  [data-cc-theme*="stroke:text-btn[after|before];"]::after,
+  [data-cc-theme*="stroke:text-btn[after|before];"]::before,
+  [data-cc-theme*="stroke:text-btn[after|before:hover];"]:hover::after,
+  [data-cc-theme*="stroke:text-btn[after|before:hover];"]:hover::before {
+    stroke:#ffffff !important;
+  }
+
+  .cc-theme-stroke--text-btn,
+  .cc-theme-stroke--text-btn_hover:hover,
+  .cc-theme-stroke--text-btn_focus:focus,
+  .cc-theme-stroke--text-btn_hover_focus:hover,
+  .cc-theme-stroke--text-btn_hover_focus:focus,
+  .cc-theme-stroke--text-btn_after::after,
+  .cc-theme-stroke--text-btn_after_hover:hover::after,
+  .cc-theme-stroke--text-btn_before::before,
+  input:checked + .cc-theme-stroke--text-btn_checked_before::before,
+  .cc-theme-stroke--text-btn_before_hover:hover::before,
+  .cc-theme-stroke--text-btn_after_before::after,
+  .cc-theme-stroke--text-btn_after_before::before,
+  .cc-theme-stroke--text-btn_after_before_hover:hover::after,
+  .cc-theme-stroke--text-btn_after_before_hover:hover::before {
+    stroke:#ffffff !important;
+  }
+
+
+
+  [data-cc-theme*="stop-color:text-btn;"],
+  [data-cc-theme*="stop-color:text-btn[hover];"]:hover,
+  [data-cc-theme*="stop-color:text-btn[focus];"]:focus,
+  [data-cc-theme*="stop-color:text-btn[hover|focus];"]:hover,
+  [data-cc-theme*="stop-color:text-btn[hover|focus];"]:focus,
+  [data-cc-theme*="stop-color:text-btn[after];"]::after,
+  [data-cc-theme*="stop-color:text-btn[after:hover];"]:hover::after,
+  [data-cc-theme*="stop-color:text-btn[before];"]::before,
+  [data-cc-theme*="stop-color:text-btn[before:hover];"]:hover::before,
+  [data-cc-theme*="stop-color:text-btn[after|before];"]::after,
+  [data-cc-theme*="stop-color:text-btn[after|before];"]::before,
+  [data-cc-theme*="stop-color:text-btn[after|before:hover];"]:hover::after,
+  [data-cc-theme*="stop-color:text-btn[after|before:hover];"]:hover::before {
+    stop-color:#ffffff !important;
+  }
+
+  .cc-theme-stop-color--text-btn,
+  .cc-theme-stop-color--text-btn_hover:hover,
+  .cc-theme-stop-color--text-btn_focus:focus,
+  .cc-theme-stop-color--text-btn_hover_focus:hover,
+  .cc-theme-stop-color--text-btn_hover_focus:focus,
+  .cc-theme-stop-color--text-btn_after::after,
+  .cc-theme-stop-color--text-btn_after_hover:hover::after,
+  .cc-theme-stop-color--text-btn_before::before,
+  input:checked + .cc-theme-stop-color--text-btn_checked_before::before,
+  .cc-theme-stop-color--text-btn_before_hover:hover::before,
+  .cc-theme-stop-color--text-btn_after_before::after,
+  .cc-theme-stop-color--text-btn_after_before::before,
+  .cc-theme-stop-color--text-btn_after_before_hover:hover::after,
+  .cc-theme-stop-color--text-btn_after_before_hover:hover::before {
+    stop-color:#ffffff !important;
+  }
+
+
+
+  [data-cc-theme*="color:text-nav;"],
+  [data-cc-theme*="color:text-nav[hover];"]:hover,
+  [data-cc-theme*="color:text-nav[focus];"]:focus,
+  [data-cc-theme*="color:text-nav[hover|focus];"]:hover,
+  [data-cc-theme*="color:text-nav[hover|focus];"]:focus,
+  [data-cc-theme*="color:text-nav[after];"]::after,
+  [data-cc-theme*="color:text-nav[after:hover];"]:hover::after,
+  [data-cc-theme*="color:text-nav[before];"]::before,
+  [data-cc-theme*="color:text-nav[before:hover];"]:hover::before,
+  [data-cc-theme*="color:text-nav[after|before];"]::after,
+  [data-cc-theme*="color:text-nav[after|before];"]::before,
+  [data-cc-theme*="color:text-nav[after|before:hover];"]:hover::after,
+  [data-cc-theme*="color:text-nav[after|before:hover];"]:hover::before {
+    color:#ffffff !important;
+  }
+
+  .cc-theme-color--text-nav,
+  .cc-theme-color--text-nav_hover:hover,
+  .cc-theme-color--text-nav_focus:focus,
+  .cc-theme-color--text-nav_hover_focus:hover,
+  .cc-theme-color--text-nav_hover_focus:focus,
+  .cc-theme-color--text-nav_after::after,
+  .cc-theme-color--text-nav_after_hover:hover::after,
+  .cc-theme-color--text-nav_before::before,
+  input:checked + .cc-theme-color--text-nav_checked_before::before,
+  .cc-theme-color--text-nav_before_hover:hover::before,
+  .cc-theme-color--text-nav_after_before::after,
+  .cc-theme-color--text-nav_after_before::before,
+  .cc-theme-color--text-nav_after_before_hover:hover::after,
+  .cc-theme-color--text-nav_after_before_hover:hover::before {
+    color:#ffffff !important;
+  }
+
+
+
+  [data-cc-theme*="background:text-nav;"],
+  [data-cc-theme*="background:text-nav[hover];"]:hover,
+  [data-cc-theme*="background:text-nav[focus];"]:focus,
+  [data-cc-theme*="background:text-nav[hover|focus];"]:hover,
+  [data-cc-theme*="background:text-nav[hover|focus];"]:focus,
+  [data-cc-theme*="background:text-nav[after];"]::after,
+  [data-cc-theme*="background:text-nav[after:hover];"]:hover::after,
+  [data-cc-theme*="background:text-nav[before];"]::before,
+  [data-cc-theme*="background:text-nav[before:hover];"]:hover::before,
+  [data-cc-theme*="background:text-nav[after|before];"]::after,
+  [data-cc-theme*="background:text-nav[after|before];"]::before,
+  [data-cc-theme*="background:text-nav[after|before:hover];"]:hover::after,
+  [data-cc-theme*="background:text-nav[after|before:hover];"]:hover::before {
+    background-color:#ffffff !important;
+  }
+
+  .cc-theme-background--text-nav,
+  .cc-theme-background--text-nav_hover:hover,
+  .cc-theme-background--text-nav_focus:focus,
+  .cc-theme-background--text-nav_hover_focus:hover,
+  .cc-theme-background--text-nav_hover_focus:focus,
+  .cc-theme-background--text-nav_after::after,
+  .cc-theme-background--text-nav_after_hover:hover::after,
+  .cc-theme-background--text-nav_before::before,
+  input:checked + .cc-theme-background--text-nav_checked_before::before,
+  .cc-theme-background--text-nav_before_hover:hover::before,
+  .cc-theme-background--text-nav_after_before::after,
+  .cc-theme-background--text-nav_after_before::before,
+  .cc-theme-background--text-nav_after_before_hover:hover::after,
+  .cc-theme-background--text-nav_after_before_hover:hover::before {
+    background-color:#ffffff !important;
+  }
+
+
+
+  [data-cc-theme*="border:text-nav;"],
+  [data-cc-theme*="border:text-nav[hover];"]:hover,
+  [data-cc-theme*="border:text-nav[focus];"]:focus,
+  [data-cc-theme*="border:text-nav[hover|focus];"]:hover,
+  [data-cc-theme*="border:text-nav[hover|focus];"]:focus,
+  [data-cc-theme*="border:text-nav[after];"]::after,
+  [data-cc-theme*="border:text-nav[after:hover];"]:hover::after,
+  [data-cc-theme*="border:text-nav[before];"]::before,
+  [data-cc-theme*="border:text-nav[before:hover];"]:hover::before,
+  [data-cc-theme*="border:text-nav[after|before];"]::after,
+  [data-cc-theme*="border:text-nav[after|before];"]::before,
+  [data-cc-theme*="border:text-nav[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border:text-nav[after|before:hover];"]:hover::before {
+    border-color:#ffffff !important;
+  }
+
+  .cc-theme-border--text-nav,
+  .cc-theme-border--text-nav_hover:hover,
+  .cc-theme-border--text-nav_focus:focus,
+  .cc-theme-border--text-nav_hover_focus:hover,
+  .cc-theme-border--text-nav_hover_focus:focus,
+  .cc-theme-border--text-nav_after::after,
+  .cc-theme-border--text-nav_after_hover:hover::after,
+  .cc-theme-border--text-nav_before::before,
+  input:checked + .cc-theme-border--text-nav_checked_before::before,
+  .cc-theme-border--text-nav_before_hover:hover::before,
+  .cc-theme-border--text-nav_after_before::after,
+  .cc-theme-border--text-nav_after_before::before,
+  .cc-theme-border--text-nav_after_before_hover:hover::after,
+  .cc-theme-border--text-nav_after_before_hover:hover::before {
+    border-color:#ffffff !important;
+  }
+
+
+
+  [data-cc-theme*="border-left:text-nav;"],
+  [data-cc-theme*="border-left:text-nav[hover];"]:hover,
+  [data-cc-theme*="border-left:text-nav[focus];"]:focus,
+  [data-cc-theme*="border-left:text-nav[hover|focus];"]:hover,
+  [data-cc-theme*="border-left:text-nav[hover|focus];"]:focus,
+  [data-cc-theme*="border-left:text-nav[after];"]::after,
+  [data-cc-theme*="border-left:text-nav[after:hover];"]:hover::after,
+  [data-cc-theme*="border-left:text-nav[before];"]::before,
+  [data-cc-theme*="border-left:text-nav[before:hover];"]:hover::before,
+  [data-cc-theme*="border-left:text-nav[after|before];"]::after,
+  [data-cc-theme*="border-left:text-nav[after|before];"]::before,
+  [data-cc-theme*="border-left:text-nav[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-left:text-nav[after|before:hover];"]:hover::before {
+    border-left-color:#ffffff !important;
+  }
+
+  .cc-theme-border-left--text-nav,
+  .cc-theme-border-left--text-nav_hover:hover,
+  .cc-theme-border-left--text-nav_focus:focus,
+  .cc-theme-border-left--text-nav_hover_focus:hover,
+  .cc-theme-border-left--text-nav_hover_focus:focus,
+  .cc-theme-border-left--text-nav_after::after,
+  .cc-theme-border-left--text-nav_after_hover:hover::after,
+  .cc-theme-border-left--text-nav_before::before,
+  input:checked + .cc-theme-border-left--text-nav_checked_before::before,
+  .cc-theme-border-left--text-nav_before_hover:hover::before,
+  .cc-theme-border-left--text-nav_after_before::after,
+  .cc-theme-border-left--text-nav_after_before::before,
+  .cc-theme-border-left--text-nav_after_before_hover:hover::after,
+  .cc-theme-border-left--text-nav_after_before_hover:hover::before {
+    border-left-color:#ffffff !important;
+  }
+
+
+
+  [data-cc-theme*="border-top:text-nav;"],
+  [data-cc-theme*="border-top:text-nav[hover];"]:hover,
+  [data-cc-theme*="border-top:text-nav[focus];"]:focus,
+  [data-cc-theme*="border-top:text-nav[hover|focus];"]:hover,
+  [data-cc-theme*="border-top:text-nav[hover|focus];"]:focus,
+  [data-cc-theme*="border-top:text-nav[after];"]::after,
+  [data-cc-theme*="border-top:text-nav[after:hover];"]:hover::after,
+  [data-cc-theme*="border-top:text-nav[before];"]::before,
+  [data-cc-theme*="border-top:text-nav[before:hover];"]:hover::before,
+  [data-cc-theme*="border-top:text-nav[after|before];"]::after,
+  [data-cc-theme*="border-top:text-nav[after|before];"]::before,
+  [data-cc-theme*="border-top:text-nav[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-top:text-nav[after|before:hover];"]:hover::before {
+    border-top-color:#ffffff !important;
+  }
+
+  .cc-theme-border-top--text-nav,
+  .cc-theme-border-top--text-nav_hover:hover,
+  .cc-theme-border-top--text-nav_focus:focus,
+  .cc-theme-border-top--text-nav_hover_focus:hover,
+  .cc-theme-border-top--text-nav_hover_focus:focus,
+  .cc-theme-border-top--text-nav_after::after,
+  .cc-theme-border-top--text-nav_after_hover:hover::after,
+  .cc-theme-border-top--text-nav_before::before,
+  input:checked + .cc-theme-border-top--text-nav_checked_before::before,
+  .cc-theme-border-top--text-nav_before_hover:hover::before,
+  .cc-theme-border-top--text-nav_after_before::after,
+  .cc-theme-border-top--text-nav_after_before::before,
+  .cc-theme-border-top--text-nav_after_before_hover:hover::after,
+  .cc-theme-border-top--text-nav_after_before_hover:hover::before {
+    border-top-color:#ffffff !important;
+  }
+
+
+
+  [data-cc-theme*="border-bottom:text-nav;"],
+  [data-cc-theme*="border-bottom:text-nav[hover];"]:hover,
+  [data-cc-theme*="border-bottom:text-nav[focus];"]:focus,
+  [data-cc-theme*="border-bottom:text-nav[hover|focus];"]:hover,
+  [data-cc-theme*="border-bottom:text-nav[hover|focus];"]:focus,
+  [data-cc-theme*="border-bottom:text-nav[after];"]::after,
+  [data-cc-theme*="border-bottom:text-nav[after:hover];"]:hover::after,
+  [data-cc-theme*="border-bottom:text-nav[before];"]::before,
+  [data-cc-theme*="border-bottom:text-nav[before:hover];"]:hover::before,
+  [data-cc-theme*="border-bottom:text-nav[after|before];"]::after,
+  [data-cc-theme*="border-bottom:text-nav[after|before];"]::before,
+  [data-cc-theme*="border-bottom:text-nav[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-bottom:text-nav[after|before:hover];"]:hover::before {
+    border-bottom-color:#ffffff !important;
+  }
+
+  .cc-theme-border-bottom--text-nav,
+  .cc-theme-border-bottom--text-nav_hover:hover,
+  .cc-theme-border-bottom--text-nav_focus:focus,
+  .cc-theme-border-bottom--text-nav_hover_focus:hover,
+  .cc-theme-border-bottom--text-nav_hover_focus:focus,
+  .cc-theme-border-bottom--text-nav_after::after,
+  .cc-theme-border-bottom--text-nav_after_hover:hover::after,
+  .cc-theme-border-bottom--text-nav_before::before,
+  input:checked + .cc-theme-border-bottom--text-nav_checked_before::before,
+  .cc-theme-border-bottom--text-nav_before_hover:hover::before,
+  .cc-theme-border-bottom--text-nav_after_before::after,
+  .cc-theme-border-bottom--text-nav_after_before::before,
+  .cc-theme-border-bottom--text-nav_after_before_hover:hover::after,
+  .cc-theme-border-bottom--text-nav_after_before_hover:hover::before {
+    border-bottom-color:#ffffff !important;
+  }
+
+
+
+  [data-cc-theme*="fill:text-nav;"],
+  [data-cc-theme*="fill:text-nav[hover];"]:hover,
+  [data-cc-theme*="fill:text-nav[focus];"]:focus,
+  [data-cc-theme*="fill:text-nav[hover|focus];"]:hover,
+  [data-cc-theme*="fill:text-nav[hover|focus];"]:focus,
+  [data-cc-theme*="fill:text-nav[after];"]::after,
+  [data-cc-theme*="fill:text-nav[after:hover];"]:hover::after,
+  [data-cc-theme*="fill:text-nav[before];"]::before,
+  [data-cc-theme*="fill:text-nav[before:hover];"]:hover::before,
+  [data-cc-theme*="fill:text-nav[after|before];"]::after,
+  [data-cc-theme*="fill:text-nav[after|before];"]::before,
+  [data-cc-theme*="fill:text-nav[after|before:hover];"]:hover::after,
+  [data-cc-theme*="fill:text-nav[after|before:hover];"]:hover::before {
+    fill:#ffffff !important;
+  }
+
+  .cc-theme-fill--text-nav,
+  .cc-theme-fill--text-nav_hover:hover,
+  .cc-theme-fill--text-nav_focus:focus,
+  .cc-theme-fill--text-nav_hover_focus:hover,
+  .cc-theme-fill--text-nav_hover_focus:focus,
+  .cc-theme-fill--text-nav_after::after,
+  .cc-theme-fill--text-nav_after_hover:hover::after,
+  .cc-theme-fill--text-nav_before::before,
+  input:checked + .cc-theme-fill--text-nav_checked_before::before,
+  .cc-theme-fill--text-nav_before_hover:hover::before,
+  .cc-theme-fill--text-nav_after_before::after,
+  .cc-theme-fill--text-nav_after_before::before,
+  .cc-theme-fill--text-nav_after_before_hover:hover::after,
+  .cc-theme-fill--text-nav_after_before_hover:hover::before {
+    fill:#ffffff !important;
+  }
+
+
+
+  [data-cc-theme*="stroke:text-nav;"],
+  [data-cc-theme*="stroke:text-nav[hover];"]:hover,
+  [data-cc-theme*="stroke:text-nav[focus];"]:focus,
+  [data-cc-theme*="stroke:text-nav[hover|focus];"]:hover,
+  [data-cc-theme*="stroke:text-nav[hover|focus];"]:focus,
+  [data-cc-theme*="stroke:text-nav[after];"]::after,
+  [data-cc-theme*="stroke:text-nav[after:hover];"]:hover::after,
+  [data-cc-theme*="stroke:text-nav[before];"]::before,
+  [data-cc-theme*="stroke:text-nav[before:hover];"]:hover::before,
+  [data-cc-theme*="stroke:text-nav[after|before];"]::after,
+  [data-cc-theme*="stroke:text-nav[after|before];"]::before,
+  [data-cc-theme*="stroke:text-nav[after|before:hover];"]:hover::after,
+  [data-cc-theme*="stroke:text-nav[after|before:hover];"]:hover::before {
+    stroke:#ffffff !important;
+  }
+
+  .cc-theme-stroke--text-nav,
+  .cc-theme-stroke--text-nav_hover:hover,
+  .cc-theme-stroke--text-nav_focus:focus,
+  .cc-theme-stroke--text-nav_hover_focus:hover,
+  .cc-theme-stroke--text-nav_hover_focus:focus,
+  .cc-theme-stroke--text-nav_after::after,
+  .cc-theme-stroke--text-nav_after_hover:hover::after,
+  .cc-theme-stroke--text-nav_before::before,
+  input:checked + .cc-theme-stroke--text-nav_checked_before::before,
+  .cc-theme-stroke--text-nav_before_hover:hover::before,
+  .cc-theme-stroke--text-nav_after_before::after,
+  .cc-theme-stroke--text-nav_after_before::before,
+  .cc-theme-stroke--text-nav_after_before_hover:hover::after,
+  .cc-theme-stroke--text-nav_after_before_hover:hover::before {
+    stroke:#ffffff !important;
+  }
+
+
+
+  [data-cc-theme*="stop-color:text-nav;"],
+  [data-cc-theme*="stop-color:text-nav[hover];"]:hover,
+  [data-cc-theme*="stop-color:text-nav[focus];"]:focus,
+  [data-cc-theme*="stop-color:text-nav[hover|focus];"]:hover,
+  [data-cc-theme*="stop-color:text-nav[hover|focus];"]:focus,
+  [data-cc-theme*="stop-color:text-nav[after];"]::after,
+  [data-cc-theme*="stop-color:text-nav[after:hover];"]:hover::after,
+  [data-cc-theme*="stop-color:text-nav[before];"]::before,
+  [data-cc-theme*="stop-color:text-nav[before:hover];"]:hover::before,
+  [data-cc-theme*="stop-color:text-nav[after|before];"]::after,
+  [data-cc-theme*="stop-color:text-nav[after|before];"]::before,
+  [data-cc-theme*="stop-color:text-nav[after|before:hover];"]:hover::after,
+  [data-cc-theme*="stop-color:text-nav[after|before:hover];"]:hover::before {
+    stop-color:#ffffff !important;
+  }
+
+  .cc-theme-stop-color--text-nav,
+  .cc-theme-stop-color--text-nav_hover:hover,
+  .cc-theme-stop-color--text-nav_focus:focus,
+  .cc-theme-stop-color--text-nav_hover_focus:hover,
+  .cc-theme-stop-color--text-nav_hover_focus:focus,
+  .cc-theme-stop-color--text-nav_after::after,
+  .cc-theme-stop-color--text-nav_after_hover:hover::after,
+  .cc-theme-stop-color--text-nav_before::before,
+  input:checked + .cc-theme-stop-color--text-nav_checked_before::before,
+  .cc-theme-stop-color--text-nav_before_hover:hover::before,
+  .cc-theme-stop-color--text-nav_after_before::after,
+  .cc-theme-stop-color--text-nav_after_before::before,
+  .cc-theme-stop-color--text-nav_after_before_hover:hover::after,
+  .cc-theme-stop-color--text-nav_after_before_hover:hover::before {
+    stop-color:#ffffff !important;
+  }
+
+
+
+  [data-cc-theme*="color:color-nav;"],
+  [data-cc-theme*="color:color-nav[hover];"]:hover,
+  [data-cc-theme*="color:color-nav[focus];"]:focus,
+  [data-cc-theme*="color:color-nav[hover|focus];"]:hover,
+  [data-cc-theme*="color:color-nav[hover|focus];"]:focus,
+  [data-cc-theme*="color:color-nav[after];"]::after,
+  [data-cc-theme*="color:color-nav[after:hover];"]:hover::after,
+  [data-cc-theme*="color:color-nav[before];"]::before,
+  [data-cc-theme*="color:color-nav[before:hover];"]:hover::before,
+  [data-cc-theme*="color:color-nav[after|before];"]::after,
+  [data-cc-theme*="color:color-nav[after|before];"]::before,
+  [data-cc-theme*="color:color-nav[after|before:hover];"]:hover::after,
+  [data-cc-theme*="color:color-nav[after|before:hover];"]:hover::before {
+    color:#343434 !important;
+  }
+
+  .cc-theme-color--color-nav,
+  .cc-theme-color--color-nav_hover:hover,
+  .cc-theme-color--color-nav_focus:focus,
+  .cc-theme-color--color-nav_hover_focus:hover,
+  .cc-theme-color--color-nav_hover_focus:focus,
+  .cc-theme-color--color-nav_after::after,
+  .cc-theme-color--color-nav_after_hover:hover::after,
+  .cc-theme-color--color-nav_before::before,
+  input:checked + .cc-theme-color--color-nav_checked_before::before,
+  .cc-theme-color--color-nav_before_hover:hover::before,
+  .cc-theme-color--color-nav_after_before::after,
+  .cc-theme-color--color-nav_after_before::before,
+  .cc-theme-color--color-nav_after_before_hover:hover::after,
+  .cc-theme-color--color-nav_after_before_hover:hover::before {
+    color:#343434 !important;
+  }
+
+
+
+  [data-cc-theme*="background:color-nav;"],
+  [data-cc-theme*="background:color-nav[hover];"]:hover,
+  [data-cc-theme*="background:color-nav[focus];"]:focus,
+  [data-cc-theme*="background:color-nav[hover|focus];"]:hover,
+  [data-cc-theme*="background:color-nav[hover|focus];"]:focus,
+  [data-cc-theme*="background:color-nav[after];"]::after,
+  [data-cc-theme*="background:color-nav[after:hover];"]:hover::after,
+  [data-cc-theme*="background:color-nav[before];"]::before,
+  [data-cc-theme*="background:color-nav[before:hover];"]:hover::before,
+  [data-cc-theme*="background:color-nav[after|before];"]::after,
+  [data-cc-theme*="background:color-nav[after|before];"]::before,
+  [data-cc-theme*="background:color-nav[after|before:hover];"]:hover::after,
+  [data-cc-theme*="background:color-nav[after|before:hover];"]:hover::before {
+    background-color:#343434 !important;
+  }
+
+  .cc-theme-background--color-nav,
+  .cc-theme-background--color-nav_hover:hover,
+  .cc-theme-background--color-nav_focus:focus,
+  .cc-theme-background--color-nav_hover_focus:hover,
+  .cc-theme-background--color-nav_hover_focus:focus,
+  .cc-theme-background--color-nav_after::after,
+  .cc-theme-background--color-nav_after_hover:hover::after,
+  .cc-theme-background--color-nav_before::before,
+  input:checked + .cc-theme-background--color-nav_checked_before::before,
+  .cc-theme-background--color-nav_before_hover:hover::before,
+  .cc-theme-background--color-nav_after_before::after,
+  .cc-theme-background--color-nav_after_before::before,
+  .cc-theme-background--color-nav_after_before_hover:hover::after,
+  .cc-theme-background--color-nav_after_before_hover:hover::before {
+    background-color:#343434 !important;
+  }
+
+
+
+  [data-cc-theme*="border:color-nav;"],
+  [data-cc-theme*="border:color-nav[hover];"]:hover,
+  [data-cc-theme*="border:color-nav[focus];"]:focus,
+  [data-cc-theme*="border:color-nav[hover|focus];"]:hover,
+  [data-cc-theme*="border:color-nav[hover|focus];"]:focus,
+  [data-cc-theme*="border:color-nav[after];"]::after,
+  [data-cc-theme*="border:color-nav[after:hover];"]:hover::after,
+  [data-cc-theme*="border:color-nav[before];"]::before,
+  [data-cc-theme*="border:color-nav[before:hover];"]:hover::before,
+  [data-cc-theme*="border:color-nav[after|before];"]::after,
+  [data-cc-theme*="border:color-nav[after|before];"]::before,
+  [data-cc-theme*="border:color-nav[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border:color-nav[after|before:hover];"]:hover::before {
+    border-color:#343434 !important;
+  }
+
+  .cc-theme-border--color-nav,
+  .cc-theme-border--color-nav_hover:hover,
+  .cc-theme-border--color-nav_focus:focus,
+  .cc-theme-border--color-nav_hover_focus:hover,
+  .cc-theme-border--color-nav_hover_focus:focus,
+  .cc-theme-border--color-nav_after::after,
+  .cc-theme-border--color-nav_after_hover:hover::after,
+  .cc-theme-border--color-nav_before::before,
+  input:checked + .cc-theme-border--color-nav_checked_before::before,
+  .cc-theme-border--color-nav_before_hover:hover::before,
+  .cc-theme-border--color-nav_after_before::after,
+  .cc-theme-border--color-nav_after_before::before,
+  .cc-theme-border--color-nav_after_before_hover:hover::after,
+  .cc-theme-border--color-nav_after_before_hover:hover::before {
+    border-color:#343434 !important;
+  }
+
+
+
+  [data-cc-theme*="border-left:color-nav;"],
+  [data-cc-theme*="border-left:color-nav[hover];"]:hover,
+  [data-cc-theme*="border-left:color-nav[focus];"]:focus,
+  [data-cc-theme*="border-left:color-nav[hover|focus];"]:hover,
+  [data-cc-theme*="border-left:color-nav[hover|focus];"]:focus,
+  [data-cc-theme*="border-left:color-nav[after];"]::after,
+  [data-cc-theme*="border-left:color-nav[after:hover];"]:hover::after,
+  [data-cc-theme*="border-left:color-nav[before];"]::before,
+  [data-cc-theme*="border-left:color-nav[before:hover];"]:hover::before,
+  [data-cc-theme*="border-left:color-nav[after|before];"]::after,
+  [data-cc-theme*="border-left:color-nav[after|before];"]::before,
+  [data-cc-theme*="border-left:color-nav[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-left:color-nav[after|before:hover];"]:hover::before {
+    border-left-color:#343434 !important;
+  }
+
+  .cc-theme-border-left--color-nav,
+  .cc-theme-border-left--color-nav_hover:hover,
+  .cc-theme-border-left--color-nav_focus:focus,
+  .cc-theme-border-left--color-nav_hover_focus:hover,
+  .cc-theme-border-left--color-nav_hover_focus:focus,
+  .cc-theme-border-left--color-nav_after::after,
+  .cc-theme-border-left--color-nav_after_hover:hover::after,
+  .cc-theme-border-left--color-nav_before::before,
+  input:checked + .cc-theme-border-left--color-nav_checked_before::before,
+  .cc-theme-border-left--color-nav_before_hover:hover::before,
+  .cc-theme-border-left--color-nav_after_before::after,
+  .cc-theme-border-left--color-nav_after_before::before,
+  .cc-theme-border-left--color-nav_after_before_hover:hover::after,
+  .cc-theme-border-left--color-nav_after_before_hover:hover::before {
+    border-left-color:#343434 !important;
+  }
+
+
+
+  [data-cc-theme*="border-top:color-nav;"],
+  [data-cc-theme*="border-top:color-nav[hover];"]:hover,
+  [data-cc-theme*="border-top:color-nav[focus];"]:focus,
+  [data-cc-theme*="border-top:color-nav[hover|focus];"]:hover,
+  [data-cc-theme*="border-top:color-nav[hover|focus];"]:focus,
+  [data-cc-theme*="border-top:color-nav[after];"]::after,
+  [data-cc-theme*="border-top:color-nav[after:hover];"]:hover::after,
+  [data-cc-theme*="border-top:color-nav[before];"]::before,
+  [data-cc-theme*="border-top:color-nav[before:hover];"]:hover::before,
+  [data-cc-theme*="border-top:color-nav[after|before];"]::after,
+  [data-cc-theme*="border-top:color-nav[after|before];"]::before,
+  [data-cc-theme*="border-top:color-nav[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-top:color-nav[after|before:hover];"]:hover::before {
+    border-top-color:#343434 !important;
+  }
+
+  .cc-theme-border-top--color-nav,
+  .cc-theme-border-top--color-nav_hover:hover,
+  .cc-theme-border-top--color-nav_focus:focus,
+  .cc-theme-border-top--color-nav_hover_focus:hover,
+  .cc-theme-border-top--color-nav_hover_focus:focus,
+  .cc-theme-border-top--color-nav_after::after,
+  .cc-theme-border-top--color-nav_after_hover:hover::after,
+  .cc-theme-border-top--color-nav_before::before,
+  input:checked + .cc-theme-border-top--color-nav_checked_before::before,
+  .cc-theme-border-top--color-nav_before_hover:hover::before,
+  .cc-theme-border-top--color-nav_after_before::after,
+  .cc-theme-border-top--color-nav_after_before::before,
+  .cc-theme-border-top--color-nav_after_before_hover:hover::after,
+  .cc-theme-border-top--color-nav_after_before_hover:hover::before {
+    border-top-color:#343434 !important;
+  }
+
+
+
+  [data-cc-theme*="border-bottom:color-nav;"],
+  [data-cc-theme*="border-bottom:color-nav[hover];"]:hover,
+  [data-cc-theme*="border-bottom:color-nav[focus];"]:focus,
+  [data-cc-theme*="border-bottom:color-nav[hover|focus];"]:hover,
+  [data-cc-theme*="border-bottom:color-nav[hover|focus];"]:focus,
+  [data-cc-theme*="border-bottom:color-nav[after];"]::after,
+  [data-cc-theme*="border-bottom:color-nav[after:hover];"]:hover::after,
+  [data-cc-theme*="border-bottom:color-nav[before];"]::before,
+  [data-cc-theme*="border-bottom:color-nav[before:hover];"]:hover::before,
+  [data-cc-theme*="border-bottom:color-nav[after|before];"]::after,
+  [data-cc-theme*="border-bottom:color-nav[after|before];"]::before,
+  [data-cc-theme*="border-bottom:color-nav[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-bottom:color-nav[after|before:hover];"]:hover::before {
+    border-bottom-color:#343434 !important;
+  }
+
+  .cc-theme-border-bottom--color-nav,
+  .cc-theme-border-bottom--color-nav_hover:hover,
+  .cc-theme-border-bottom--color-nav_focus:focus,
+  .cc-theme-border-bottom--color-nav_hover_focus:hover,
+  .cc-theme-border-bottom--color-nav_hover_focus:focus,
+  .cc-theme-border-bottom--color-nav_after::after,
+  .cc-theme-border-bottom--color-nav_after_hover:hover::after,
+  .cc-theme-border-bottom--color-nav_before::before,
+  input:checked + .cc-theme-border-bottom--color-nav_checked_before::before,
+  .cc-theme-border-bottom--color-nav_before_hover:hover::before,
+  .cc-theme-border-bottom--color-nav_after_before::after,
+  .cc-theme-border-bottom--color-nav_after_before::before,
+  .cc-theme-border-bottom--color-nav_after_before_hover:hover::after,
+  .cc-theme-border-bottom--color-nav_after_before_hover:hover::before {
+    border-bottom-color:#343434 !important;
+  }
+
+
+
+  [data-cc-theme*="fill:color-nav;"],
+  [data-cc-theme*="fill:color-nav[hover];"]:hover,
+  [data-cc-theme*="fill:color-nav[focus];"]:focus,
+  [data-cc-theme*="fill:color-nav[hover|focus];"]:hover,
+  [data-cc-theme*="fill:color-nav[hover|focus];"]:focus,
+  [data-cc-theme*="fill:color-nav[after];"]::after,
+  [data-cc-theme*="fill:color-nav[after:hover];"]:hover::after,
+  [data-cc-theme*="fill:color-nav[before];"]::before,
+  [data-cc-theme*="fill:color-nav[before:hover];"]:hover::before,
+  [data-cc-theme*="fill:color-nav[after|before];"]::after,
+  [data-cc-theme*="fill:color-nav[after|before];"]::before,
+  [data-cc-theme*="fill:color-nav[after|before:hover];"]:hover::after,
+  [data-cc-theme*="fill:color-nav[after|before:hover];"]:hover::before {
+    fill:#343434 !important;
+  }
+
+  .cc-theme-fill--color-nav,
+  .cc-theme-fill--color-nav_hover:hover,
+  .cc-theme-fill--color-nav_focus:focus,
+  .cc-theme-fill--color-nav_hover_focus:hover,
+  .cc-theme-fill--color-nav_hover_focus:focus,
+  .cc-theme-fill--color-nav_after::after,
+  .cc-theme-fill--color-nav_after_hover:hover::after,
+  .cc-theme-fill--color-nav_before::before,
+  input:checked + .cc-theme-fill--color-nav_checked_before::before,
+  .cc-theme-fill--color-nav_before_hover:hover::before,
+  .cc-theme-fill--color-nav_after_before::after,
+  .cc-theme-fill--color-nav_after_before::before,
+  .cc-theme-fill--color-nav_after_before_hover:hover::after,
+  .cc-theme-fill--color-nav_after_before_hover:hover::before {
+    fill:#343434 !important;
+  }
+
+
+
+  [data-cc-theme*="stroke:color-nav;"],
+  [data-cc-theme*="stroke:color-nav[hover];"]:hover,
+  [data-cc-theme*="stroke:color-nav[focus];"]:focus,
+  [data-cc-theme*="stroke:color-nav[hover|focus];"]:hover,
+  [data-cc-theme*="stroke:color-nav[hover|focus];"]:focus,
+  [data-cc-theme*="stroke:color-nav[after];"]::after,
+  [data-cc-theme*="stroke:color-nav[after:hover];"]:hover::after,
+  [data-cc-theme*="stroke:color-nav[before];"]::before,
+  [data-cc-theme*="stroke:color-nav[before:hover];"]:hover::before,
+  [data-cc-theme*="stroke:color-nav[after|before];"]::after,
+  [data-cc-theme*="stroke:color-nav[after|before];"]::before,
+  [data-cc-theme*="stroke:color-nav[after|before:hover];"]:hover::after,
+  [data-cc-theme*="stroke:color-nav[after|before:hover];"]:hover::before {
+    stroke:#343434 !important;
+  }
+
+  .cc-theme-stroke--color-nav,
+  .cc-theme-stroke--color-nav_hover:hover,
+  .cc-theme-stroke--color-nav_focus:focus,
+  .cc-theme-stroke--color-nav_hover_focus:hover,
+  .cc-theme-stroke--color-nav_hover_focus:focus,
+  .cc-theme-stroke--color-nav_after::after,
+  .cc-theme-stroke--color-nav_after_hover:hover::after,
+  .cc-theme-stroke--color-nav_before::before,
+  input:checked + .cc-theme-stroke--color-nav_checked_before::before,
+  .cc-theme-stroke--color-nav_before_hover:hover::before,
+  .cc-theme-stroke--color-nav_after_before::after,
+  .cc-theme-stroke--color-nav_after_before::before,
+  .cc-theme-stroke--color-nav_after_before_hover:hover::after,
+  .cc-theme-stroke--color-nav_after_before_hover:hover::before {
+    stroke:#343434 !important;
+  }
+
+
+
+  [data-cc-theme*="stop-color:color-nav;"],
+  [data-cc-theme*="stop-color:color-nav[hover];"]:hover,
+  [data-cc-theme*="stop-color:color-nav[focus];"]:focus,
+  [data-cc-theme*="stop-color:color-nav[hover|focus];"]:hover,
+  [data-cc-theme*="stop-color:color-nav[hover|focus];"]:focus,
+  [data-cc-theme*="stop-color:color-nav[after];"]::after,
+  [data-cc-theme*="stop-color:color-nav[after:hover];"]:hover::after,
+  [data-cc-theme*="stop-color:color-nav[before];"]::before,
+  [data-cc-theme*="stop-color:color-nav[before:hover];"]:hover::before,
+  [data-cc-theme*="stop-color:color-nav[after|before];"]::after,
+  [data-cc-theme*="stop-color:color-nav[after|before];"]::before,
+  [data-cc-theme*="stop-color:color-nav[after|before:hover];"]:hover::after,
+  [data-cc-theme*="stop-color:color-nav[after|before:hover];"]:hover::before {
+    stop-color:#343434 !important;
+  }
+
+  .cc-theme-stop-color--color-nav,
+  .cc-theme-stop-color--color-nav_hover:hover,
+  .cc-theme-stop-color--color-nav_focus:focus,
+  .cc-theme-stop-color--color-nav_hover_focus:hover,
+  .cc-theme-stop-color--color-nav_hover_focus:focus,
+  .cc-theme-stop-color--color-nav_after::after,
+  .cc-theme-stop-color--color-nav_after_hover:hover::after,
+  .cc-theme-stop-color--color-nav_before::before,
+  input:checked + .cc-theme-stop-color--color-nav_checked_before::before,
+  .cc-theme-stop-color--color-nav_before_hover:hover::before,
+  .cc-theme-stop-color--color-nav_after_before::after,
+  .cc-theme-stop-color--color-nav_after_before::before,
+  .cc-theme-stop-color--color-nav_after_before_hover:hover::after,
+  .cc-theme-stop-color--color-nav_after_before_hover:hover::before {
+    stop-color:#343434 !important;
+  }
+
+
+
+  [data-cc-theme*="color:box-title-color;"],
+  [data-cc-theme*="color:box-title-color[hover];"]:hover,
+  [data-cc-theme*="color:box-title-color[focus];"]:focus,
+  [data-cc-theme*="color:box-title-color[hover|focus];"]:hover,
+  [data-cc-theme*="color:box-title-color[hover|focus];"]:focus,
+  [data-cc-theme*="color:box-title-color[after];"]::after,
+  [data-cc-theme*="color:box-title-color[after:hover];"]:hover::after,
+  [data-cc-theme*="color:box-title-color[before];"]::before,
+  [data-cc-theme*="color:box-title-color[before:hover];"]:hover::before,
+  [data-cc-theme*="color:box-title-color[after|before];"]::after,
+  [data-cc-theme*="color:box-title-color[after|before];"]::before,
+  [data-cc-theme*="color:box-title-color[after|before:hover];"]:hover::after,
+  [data-cc-theme*="color:box-title-color[after|before:hover];"]:hover::before {
+    color:#000040 !important;
+  }
+
+  .cc-theme-color--box-title-color,
+  .cc-theme-color--box-title-color_hover:hover,
+  .cc-theme-color--box-title-color_focus:focus,
+  .cc-theme-color--box-title-color_hover_focus:hover,
+  .cc-theme-color--box-title-color_hover_focus:focus,
+  .cc-theme-color--box-title-color_after::after,
+  .cc-theme-color--box-title-color_after_hover:hover::after,
+  .cc-theme-color--box-title-color_before::before,
+  input:checked + .cc-theme-color--box-title-color_checked_before::before,
+  .cc-theme-color--box-title-color_before_hover:hover::before,
+  .cc-theme-color--box-title-color_after_before::after,
+  .cc-theme-color--box-title-color_after_before::before,
+  .cc-theme-color--box-title-color_after_before_hover:hover::after,
+  .cc-theme-color--box-title-color_after_before_hover:hover::before {
+    color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="background:box-title-color;"],
+  [data-cc-theme*="background:box-title-color[hover];"]:hover,
+  [data-cc-theme*="background:box-title-color[focus];"]:focus,
+  [data-cc-theme*="background:box-title-color[hover|focus];"]:hover,
+  [data-cc-theme*="background:box-title-color[hover|focus];"]:focus,
+  [data-cc-theme*="background:box-title-color[after];"]::after,
+  [data-cc-theme*="background:box-title-color[after:hover];"]:hover::after,
+  [data-cc-theme*="background:box-title-color[before];"]::before,
+  [data-cc-theme*="background:box-title-color[before:hover];"]:hover::before,
+  [data-cc-theme*="background:box-title-color[after|before];"]::after,
+  [data-cc-theme*="background:box-title-color[after|before];"]::before,
+  [data-cc-theme*="background:box-title-color[after|before:hover];"]:hover::after,
+  [data-cc-theme*="background:box-title-color[after|before:hover];"]:hover::before {
+    background-color:#000040 !important;
+  }
+
+  .cc-theme-background--box-title-color,
+  .cc-theme-background--box-title-color_hover:hover,
+  .cc-theme-background--box-title-color_focus:focus,
+  .cc-theme-background--box-title-color_hover_focus:hover,
+  .cc-theme-background--box-title-color_hover_focus:focus,
+  .cc-theme-background--box-title-color_after::after,
+  .cc-theme-background--box-title-color_after_hover:hover::after,
+  .cc-theme-background--box-title-color_before::before,
+  input:checked + .cc-theme-background--box-title-color_checked_before::before,
+  .cc-theme-background--box-title-color_before_hover:hover::before,
+  .cc-theme-background--box-title-color_after_before::after,
+  .cc-theme-background--box-title-color_after_before::before,
+  .cc-theme-background--box-title-color_after_before_hover:hover::after,
+  .cc-theme-background--box-title-color_after_before_hover:hover::before {
+    background-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="border:box-title-color;"],
+  [data-cc-theme*="border:box-title-color[hover];"]:hover,
+  [data-cc-theme*="border:box-title-color[focus];"]:focus,
+  [data-cc-theme*="border:box-title-color[hover|focus];"]:hover,
+  [data-cc-theme*="border:box-title-color[hover|focus];"]:focus,
+  [data-cc-theme*="border:box-title-color[after];"]::after,
+  [data-cc-theme*="border:box-title-color[after:hover];"]:hover::after,
+  [data-cc-theme*="border:box-title-color[before];"]::before,
+  [data-cc-theme*="border:box-title-color[before:hover];"]:hover::before,
+  [data-cc-theme*="border:box-title-color[after|before];"]::after,
+  [data-cc-theme*="border:box-title-color[after|before];"]::before,
+  [data-cc-theme*="border:box-title-color[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border:box-title-color[after|before:hover];"]:hover::before {
+    border-color:#000040 !important;
+  }
+
+  .cc-theme-border--box-title-color,
+  .cc-theme-border--box-title-color_hover:hover,
+  .cc-theme-border--box-title-color_focus:focus,
+  .cc-theme-border--box-title-color_hover_focus:hover,
+  .cc-theme-border--box-title-color_hover_focus:focus,
+  .cc-theme-border--box-title-color_after::after,
+  .cc-theme-border--box-title-color_after_hover:hover::after,
+  .cc-theme-border--box-title-color_before::before,
+  input:checked + .cc-theme-border--box-title-color_checked_before::before,
+  .cc-theme-border--box-title-color_before_hover:hover::before,
+  .cc-theme-border--box-title-color_after_before::after,
+  .cc-theme-border--box-title-color_after_before::before,
+  .cc-theme-border--box-title-color_after_before_hover:hover::after,
+  .cc-theme-border--box-title-color_after_before_hover:hover::before {
+    border-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="border-left:box-title-color;"],
+  [data-cc-theme*="border-left:box-title-color[hover];"]:hover,
+  [data-cc-theme*="border-left:box-title-color[focus];"]:focus,
+  [data-cc-theme*="border-left:box-title-color[hover|focus];"]:hover,
+  [data-cc-theme*="border-left:box-title-color[hover|focus];"]:focus,
+  [data-cc-theme*="border-left:box-title-color[after];"]::after,
+  [data-cc-theme*="border-left:box-title-color[after:hover];"]:hover::after,
+  [data-cc-theme*="border-left:box-title-color[before];"]::before,
+  [data-cc-theme*="border-left:box-title-color[before:hover];"]:hover::before,
+  [data-cc-theme*="border-left:box-title-color[after|before];"]::after,
+  [data-cc-theme*="border-left:box-title-color[after|before];"]::before,
+  [data-cc-theme*="border-left:box-title-color[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-left:box-title-color[after|before:hover];"]:hover::before {
+    border-left-color:#000040 !important;
+  }
+
+  .cc-theme-border-left--box-title-color,
+  .cc-theme-border-left--box-title-color_hover:hover,
+  .cc-theme-border-left--box-title-color_focus:focus,
+  .cc-theme-border-left--box-title-color_hover_focus:hover,
+  .cc-theme-border-left--box-title-color_hover_focus:focus,
+  .cc-theme-border-left--box-title-color_after::after,
+  .cc-theme-border-left--box-title-color_after_hover:hover::after,
+  .cc-theme-border-left--box-title-color_before::before,
+  input:checked + .cc-theme-border-left--box-title-color_checked_before::before,
+  .cc-theme-border-left--box-title-color_before_hover:hover::before,
+  .cc-theme-border-left--box-title-color_after_before::after,
+  .cc-theme-border-left--box-title-color_after_before::before,
+  .cc-theme-border-left--box-title-color_after_before_hover:hover::after,
+  .cc-theme-border-left--box-title-color_after_before_hover:hover::before {
+    border-left-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="border-top:box-title-color;"],
+  [data-cc-theme*="border-top:box-title-color[hover];"]:hover,
+  [data-cc-theme*="border-top:box-title-color[focus];"]:focus,
+  [data-cc-theme*="border-top:box-title-color[hover|focus];"]:hover,
+  [data-cc-theme*="border-top:box-title-color[hover|focus];"]:focus,
+  [data-cc-theme*="border-top:box-title-color[after];"]::after,
+  [data-cc-theme*="border-top:box-title-color[after:hover];"]:hover::after,
+  [data-cc-theme*="border-top:box-title-color[before];"]::before,
+  [data-cc-theme*="border-top:box-title-color[before:hover];"]:hover::before,
+  [data-cc-theme*="border-top:box-title-color[after|before];"]::after,
+  [data-cc-theme*="border-top:box-title-color[after|before];"]::before,
+  [data-cc-theme*="border-top:box-title-color[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-top:box-title-color[after|before:hover];"]:hover::before {
+    border-top-color:#000040 !important;
+  }
+
+  .cc-theme-border-top--box-title-color,
+  .cc-theme-border-top--box-title-color_hover:hover,
+  .cc-theme-border-top--box-title-color_focus:focus,
+  .cc-theme-border-top--box-title-color_hover_focus:hover,
+  .cc-theme-border-top--box-title-color_hover_focus:focus,
+  .cc-theme-border-top--box-title-color_after::after,
+  .cc-theme-border-top--box-title-color_after_hover:hover::after,
+  .cc-theme-border-top--box-title-color_before::before,
+  input:checked + .cc-theme-border-top--box-title-color_checked_before::before,
+  .cc-theme-border-top--box-title-color_before_hover:hover::before,
+  .cc-theme-border-top--box-title-color_after_before::after,
+  .cc-theme-border-top--box-title-color_after_before::before,
+  .cc-theme-border-top--box-title-color_after_before_hover:hover::after,
+  .cc-theme-border-top--box-title-color_after_before_hover:hover::before {
+    border-top-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="border-bottom:box-title-color;"],
+  [data-cc-theme*="border-bottom:box-title-color[hover];"]:hover,
+  [data-cc-theme*="border-bottom:box-title-color[focus];"]:focus,
+  [data-cc-theme*="border-bottom:box-title-color[hover|focus];"]:hover,
+  [data-cc-theme*="border-bottom:box-title-color[hover|focus];"]:focus,
+  [data-cc-theme*="border-bottom:box-title-color[after];"]::after,
+  [data-cc-theme*="border-bottom:box-title-color[after:hover];"]:hover::after,
+  [data-cc-theme*="border-bottom:box-title-color[before];"]::before,
+  [data-cc-theme*="border-bottom:box-title-color[before:hover];"]:hover::before,
+  [data-cc-theme*="border-bottom:box-title-color[after|before];"]::after,
+  [data-cc-theme*="border-bottom:box-title-color[after|before];"]::before,
+  [data-cc-theme*="border-bottom:box-title-color[after|before:hover];"]:hover::after,
+  [data-cc-theme*="border-bottom:box-title-color[after|before:hover];"]:hover::before {
+    border-bottom-color:#000040 !important;
+  }
+
+  .cc-theme-border-bottom--box-title-color,
+  .cc-theme-border-bottom--box-title-color_hover:hover,
+  .cc-theme-border-bottom--box-title-color_focus:focus,
+  .cc-theme-border-bottom--box-title-color_hover_focus:hover,
+  .cc-theme-border-bottom--box-title-color_hover_focus:focus,
+  .cc-theme-border-bottom--box-title-color_after::after,
+  .cc-theme-border-bottom--box-title-color_after_hover:hover::after,
+  .cc-theme-border-bottom--box-title-color_before::before,
+  input:checked + .cc-theme-border-bottom--box-title-color_checked_before::before,
+  .cc-theme-border-bottom--box-title-color_before_hover:hover::before,
+  .cc-theme-border-bottom--box-title-color_after_before::after,
+  .cc-theme-border-bottom--box-title-color_after_before::before,
+  .cc-theme-border-bottom--box-title-color_after_before_hover:hover::after,
+  .cc-theme-border-bottom--box-title-color_after_before_hover:hover::before {
+    border-bottom-color:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="fill:box-title-color;"],
+  [data-cc-theme*="fill:box-title-color[hover];"]:hover,
+  [data-cc-theme*="fill:box-title-color[focus];"]:focus,
+  [data-cc-theme*="fill:box-title-color[hover|focus];"]:hover,
+  [data-cc-theme*="fill:box-title-color[hover|focus];"]:focus,
+  [data-cc-theme*="fill:box-title-color[after];"]::after,
+  [data-cc-theme*="fill:box-title-color[after:hover];"]:hover::after,
+  [data-cc-theme*="fill:box-title-color[before];"]::before,
+  [data-cc-theme*="fill:box-title-color[before:hover];"]:hover::before,
+  [data-cc-theme*="fill:box-title-color[after|before];"]::after,
+  [data-cc-theme*="fill:box-title-color[after|before];"]::before,
+  [data-cc-theme*="fill:box-title-color[after|before:hover];"]:hover::after,
+  [data-cc-theme*="fill:box-title-color[after|before:hover];"]:hover::before {
+    fill:#000040 !important;
+  }
+
+  .cc-theme-fill--box-title-color,
+  .cc-theme-fill--box-title-color_hover:hover,
+  .cc-theme-fill--box-title-color_focus:focus,
+  .cc-theme-fill--box-title-color_hover_focus:hover,
+  .cc-theme-fill--box-title-color_hover_focus:focus,
+  .cc-theme-fill--box-title-color_after::after,
+  .cc-theme-fill--box-title-color_after_hover:hover::after,
+  .cc-theme-fill--box-title-color_before::before,
+  input:checked + .cc-theme-fill--box-title-color_checked_before::before,
+  .cc-theme-fill--box-title-color_before_hover:hover::before,
+  .cc-theme-fill--box-title-color_after_before::after,
+  .cc-theme-fill--box-title-color_after_before::before,
+  .cc-theme-fill--box-title-color_after_before_hover:hover::after,
+  .cc-theme-fill--box-title-color_after_before_hover:hover::before {
+    fill:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="stroke:box-title-color;"],
+  [data-cc-theme*="stroke:box-title-color[hover];"]:hover,
+  [data-cc-theme*="stroke:box-title-color[focus];"]:focus,
+  [data-cc-theme*="stroke:box-title-color[hover|focus];"]:hover,
+  [data-cc-theme*="stroke:box-title-color[hover|focus];"]:focus,
+  [data-cc-theme*="stroke:box-title-color[after];"]::after,
+  [data-cc-theme*="stroke:box-title-color[after:hover];"]:hover::after,
+  [data-cc-theme*="stroke:box-title-color[before];"]::before,
+  [data-cc-theme*="stroke:box-title-color[before:hover];"]:hover::before,
+  [data-cc-theme*="stroke:box-title-color[after|before];"]::after,
+  [data-cc-theme*="stroke:box-title-color[after|before];"]::before,
+  [data-cc-theme*="stroke:box-title-color[after|before:hover];"]:hover::after,
+  [data-cc-theme*="stroke:box-title-color[after|before:hover];"]:hover::before {
+    stroke:#000040 !important;
+  }
+
+  .cc-theme-stroke--box-title-color,
+  .cc-theme-stroke--box-title-color_hover:hover,
+  .cc-theme-stroke--box-title-color_focus:focus,
+  .cc-theme-stroke--box-title-color_hover_focus:hover,
+  .cc-theme-stroke--box-title-color_hover_focus:focus,
+  .cc-theme-stroke--box-title-color_after::after,
+  .cc-theme-stroke--box-title-color_after_hover:hover::after,
+  .cc-theme-stroke--box-title-color_before::before,
+  input:checked + .cc-theme-stroke--box-title-color_checked_before::before,
+  .cc-theme-stroke--box-title-color_before_hover:hover::before,
+  .cc-theme-stroke--box-title-color_after_before::after,
+  .cc-theme-stroke--box-title-color_after_before::before,
+  .cc-theme-stroke--box-title-color_after_before_hover:hover::after,
+  .cc-theme-stroke--box-title-color_after_before_hover:hover::before {
+    stroke:#000040 !important;
+  }
+
+
+
+  [data-cc-theme*="stop-color:box-title-color;"],
+  [data-cc-theme*="stop-color:box-title-color[hover];"]:hover,
+  [data-cc-theme*="stop-color:box-title-color[focus];"]:focus,
+  [data-cc-theme*="stop-color:box-title-color[hover|focus];"]:hover,
+  [data-cc-theme*="stop-color:box-title-color[hover|focus];"]:focus,
+  [data-cc-theme*="stop-color:box-title-color[after];"]::after,
+  [data-cc-theme*="stop-color:box-title-color[after:hover];"]:hover::after,
+  [data-cc-theme*="stop-color:box-title-color[before];"]::before,
+  [data-cc-theme*="stop-color:box-title-color[before:hover];"]:hover::before,
+  [data-cc-theme*="stop-color:box-title-color[after|before];"]::after,
+  [data-cc-theme*="stop-color:box-title-color[after|before];"]::before,
+  [data-cc-theme*="stop-color:box-title-color[after|before:hover];"]:hover::after,
+  [data-cc-theme*="stop-color:box-title-color[after|before:hover];"]:hover::before {
+    stop-color:#000040 !important;
+  }
+
+  .cc-theme-stop-color--box-title-color,
+  .cc-theme-stop-color--box-title-color_hover:hover,
+  .cc-theme-stop-color--box-title-color_focus:focus,
+  .cc-theme-stop-color--box-title-color_hover_focus:hover,
+  .cc-theme-stop-color--box-title-color_hover_focus:focus,
+  .cc-theme-stop-color--box-title-color_after::after,
+  .cc-theme-stop-color--box-title-color_after_hover:hover::after,
+  .cc-theme-stop-color--box-title-color_before::before,
+  input:checked + .cc-theme-stop-color--box-title-color_checked_before::before,
+  .cc-theme-stop-color--box-title-color_before_hover:hover::before,
+  .cc-theme-stop-color--box-title-color_after_before::after,
+  .cc-theme-stop-color--box-title-color_after_before::before,
+  .cc-theme-stop-color--box-title-color_after_before_hover:hover::after,
+  .cc-theme-stop-color--box-title-color_after_before_hover:hover::before {
+    stop-color:#000040 !important;
+  }
+
+</style>
+
+
+    <script>
+  (function () {
+    JT = {};
+    JT.config = {"env":"production","current_user":6265957,"current_user_uuid":"9a0b4619-c720-44e0-8807-1ca07dac96f7","current_user_role":null,"current_user_jwt":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOjYyNjU5NTcsInJvbGUiOnsidGl0bGUiOiJzdHVkZW50IiwiY29tcGFueV9pZCI6bnVsbCwic2Nob29sX2lkIjozMjI2LCJhc3NvY2lhdGVkX2NhcmVlcl9jZW50ZXJfaWRzIjpbXSwiY3VycmljdWx1bV9pZHMiOlszNTU0N119LCJleHAiOjE2OTgwNjkwMDF9.urAGwyAkBSRZNJoEnGm3ZE4TjNssKOLNfuawg54fM3b95XifkOP-_AioLmyTMDwJmzj29YQLek7k1mgKJ4LTuF5Pt6KOmikN-F45itr1HvI0Pb4-Bc4bNpg0uM2aT79qe8kNMgQrAAwpfYRHp53qaedzD3DK06_WOicv0GG12QclE7zs9shHNgk-tuG9_ju5Qm3jtF3c_2p6z32yBHejlDtrsy06A8uNhKaH0WZ5c238mMBYNXOcH_f47mnbsm0qNN_CJ_SJuM3CwWJMpnFqIarHh1TU8YhykgFquaM-lyOjsIfC2mvBQnpnAEdYtV1vnjvNByB35JVSUqMRC41vUQ","current_user_first_name":"Fantine","current_user_last_name":"ROSSIGNY","is_hidden_admin":null,"popup":null,"locale":"fr","current_color":"#000040","current_school_name":"IESEG","current_school_short_name":"IESEG","current_school_id":3226,"current_school_logo_url":"https://d1guu6n8gz71j.cloudfront.net/system/asset/logos/4871762/logo.png?1631629946","current_school_country":"France","subdomain_school_permalink":"ieseg","subdomain_school_id":3226,"subdomain_school_uuid":"055a0fb9-81d3-42ee-b618-517fb00623f0","current_avatar_url":"https://d1guu6n8gz71j.cloudfront.net/system/users/avatars/6265957/original_9a0b4619-c720-44e0-8807-1ca07dac96f7-1696266372.jpg?1696266376","current_school_associated_career_centers":[],"current_company_uuid":null,"has_job_ad_banner_for_legal_subvention":false,"display_rss_feed_cc_admin_button":true,"current_school_time_zone":"Europe/Paris","flowplayer_key":"#$b0e1477e6b01c29b126","froala_key":"AODOd2HLEBFZOTGHW==","google_frontend_api_key":"AIzaSyBNNT4KQ_t6pGjBIiIhQGCsSwyx2e1UH1c","frontend_google_api_key":{"fo_job_offer":"AIzaSyB5rYKNqQB5Zx3nP15Vdb1E6-R023gKAKs"},"algolia_application_id":"9VCP793IVH","recaptcha_site_key":"6LdCKpEUAAAAAKynS95F-npAgWvEctBhioGElLXk","premium_job_offers_display_limit":2,"premiums_search_url":"https://premiums.prod.jobteaser.net/v1/search","jwplayer_cdn_media_url":"https://cdn.jwplayer.com/v2/media","jwplayer_player_id":"LrUNDhOw","gateway_api_origin":"https://apigw.jobteaser.com","notifications":{"notice":null,"warning":null,"error":null},"jobbuffer_enabled":true,"flash":null,"frontoffice_legacy_js_path":"https://d2mp1cia79qmhd.cloudfront.net/prod/assets/frontoffice-b6a47e85dd8f6052c63388319dec0d317a8ffc4f849d61ab17a8f39d835c2f05.js","crm_braze":{"appid":"7952f617-8028-45fd-a0d2-1a73606e6bc2","base_url":"https://sdk.fra-01.braze.eu","enabled":"true","user_consent":false},"cms_kontent":{"appid":"d0ab3c4d-3ec6-0150-71bd-939f3db14bb9"},"cookie_banner":{"client_id":"5fd938934e433a71df9437d3","name":"jobteaser","didomi_id":"8f862aca-fb40-4622-9641-cdf7f6e7e9eb","didomi_enabled":true},"rudderstack":{"enabled":true,"js_write_key":"2JRaMrRCFuWcqKpek51T6ZF70jk","data_plane_url":"https://rudderstack.jobteaser.com"},"datadog_rum":{"enabled":"true","application_id":"bfa173ce-8868-4f49-ae9d-5e2b3a94e216","client_token":"pube78a7902eb80a0c2003cd0b84da3f014","sample_rate":"5"},"unleash":{"host":"https://unleash.jobteaser.com/proxy","key":"production.fbe25f7ae-web"},"frontend_tracking":{"validation_mode_enabled":"false"},"security_website_url":"https://security.jobteaser.com","default_homepage_locales":["da","de","en","es","fr","nl"],"show_locale_selector":true,"cc_locales":["fr","en"],"career_center_name_localized":"CAREER CENTER","custom_school_theme":{"logo":"https://d1guu6n8gz71j.cloudfront.net/system/asset/logos/4871762/logo.png?1631629946","secondary_logo":null},"footer_urls":{"new_student_profile_path":"/fr/profiles/new","job_offers_path":"/fr/job-offers","companies_path":"/fr/companies","events_path":"/fr/events","advices_path":"/fr/advices","dedicated_homepages_links":[{"text":"Offres en alternance","path":"/fr/info/alternance"},{"text":"Offres pour Bac+2, Bac+3, BTS","path":"/fr/info/bts-bac2-bac3-alternance-emploi"}],"about_us_path":"https://www.jobteaser.com/fr/corporate/a-propos","career_center_path":"https://www.jobteaser.com/fr/corporate/services-carrieres","map_path":"https://www.jobteaser.com/fr/corporate/notre-reseau-d-ecoles-et-d-universites","recruiters_path":"https://www.jobteaser.com/fr/corporate/recruteurs","company_job_offers_path":"/fr/companies/jobteaser/job-offers","teams_company_path":"/fr/companies/jobteaser/teams","legal_notice_path":"/fr/about/legal-notice","privacy_policy_path":"/fr/about/privacy-policy"},"socials":[{"id":"youtube","url":"https://www.youtube.com/@JobTeaserFrance","alt":"Youtube","icon":"logos/youtube-white.svg"},{"id":"instagram","url":"https://www.instagram.com/jobteaser_fr/","alt":"Instagram","icon":"logos/instagram-white.svg"},{"id":"tiktok","url":"https://www.tiktok.com/@jobteaser_fr","alt":"Tiktok","icon":"logos/tiktok-white.svg"},{"id":"facebook","url":"https://www.facebook.com/jobteaser","alt":"Facebook","icon":"logos/facebook-white.svg"},{"id":"linkedin","url":"https://www.linkedin.com/company/jobteaser/","alt":"LinkedIn","icon":"logos/linkedin-white.svg"}],"is_student_logged_in":{"id":4698141,"user_id":6265957,"created_at":"2023-09-11T11:10:05+02:00","updated_at":"2023-10-20T15:31:28+02:00","profile_completion":80,"year_of_graduation":2028,"presentation":"Etudiante en première année à l'IESEG (campus de Paris La Défense), je suis une jeune femme dynamique, ouverte et ayant une forte capacité de travail. \n\nParticulièrement intéressée par les organisations à grandes dimensions environnementales, humaines et internationales, je souhaiterais participer à des projets de développement dans des domaines en lien avec l'éducation, la protection de l'environnement, la santé, le sport.","job_search_type":[],"experience":null,"type_of_graduation":null,"essec_contestant":null,"disponibility":null,"weekly_events_alert":true,"daily_job_offers_alert":false,"remote_resume_url":null,"exclusive_offers":null,"is_alumni":false,"staff_user":null,"experience_level_searched":[3],"enable_foreign_languages":true,"job_search_abroad":null,"contract_duration_min":null,"contract_duration_max":null,"mail_alert_popup_dismiss_date":null,"onboarding_popin_shown":false,"last_update_curriculum_prompt_date":"2023-09-11","external_reference":null,"newsletter_unsubscription_token":"e37e389f-f72f-4b69-9978-b7dc27d4052d","internship_application":true,"campus_id":101,"uuid":"cdf14450-279f-4aae-a54a-f43e8c1a1308","social_media":{"linkedin":"https://www.linkedin.com/in/fantine-rossigny-180613290/","xing":null,"viadeo":null,"github":null,"medium":null,"behance":null,"dribbble":null,"twitter":null,"instagram":null},"seq":23,"tags":[],"seq_profile":20,"remote_types":[],"last_onboarding_seen_time":"2023-09-11T11:15:37+02:00","study_levels":[]},"enabled_locales":["fr","en"],"job_roles_locales":["de","es","en","fr","nl"],"has_advices":true,"has_events":true,"user_context":{"short_navbar":true,"show_community":true,"show_job_offers":true,"community_insights":true,"community_discussions":false,"show_job_roles":true},"header_urls":{"home_path":"/fr","nav_dashboard_path":"/fr/dashboard","companies_path":"/fr/companies","insights_path":"/fr/insights?only-my-career-center=true","discussions_path":"/fr/discussions","job_offers_path":"/fr/job-offers","generic_positions_path":"/fr/job-descriptions","job_roles_path":"/fr/job-roles","advices_path":"/fr/advices","events_path":"/fr/events","main_career_center_handbook_path":"/fr/handbook","handbook_path":"/fr/handbook?school_id=3226","appointments_path":"/fr/v2/appointments"},"is_associated_career_center":false,"has_main_career_center_articles":null,"main_career_center_custom_resource_locale":null,"has_articles":true,"custom_resource_locale":"Stages / Carrières","has_appointment_system":true,"is_appointment_system_in_frontend_disabled":false,"header_dropdown_menu_urls":{"backend_disconnect_as_path":"/fr/backend/disconnect_as","student_profile_path":"/fr/profiles/9a0b4619-c720-44e0-8807-1ca07dac96f7","consent_student_profiles_path":"/fr/profiles/consent","edit_student_profile_account_settings_path":"/fr/profiles/9a0b4619-c720-44e0-8807-1ca07dac96f7/account_settings/edit","company_path":"","backend_root_path":"/fr/backend","destroy_user_session_path":"/fr/users/sign_out"},"any_company_role":false,"is_with_company_space":false,"has_school_profile":false,"is_admin":false,"header_login_user_urls":{"root_path":"/?i18n_locale=fr","new_user_session_path":"/fr/users/sign_in","new_student_profile_path":"/fr/profiles/new"},"is_intranet_context":true,"productfruits_workspace":"e3ExulYMU3jdUtJp"};
+
+    JT.I18n = {"add":"Ajouter","applicant_pdf":{"browser_do_not_support_iframe":"Il semble que votre navigateur web ne supporte pas les iframes.","cover_letter":"Lettre de motivation","cv":"CV","no_document_available":"Aucun document disponible","pdf_download_instruction_1":"Aïe ! Votre navigateur ne permet pas de lire les fichiers pdf…","pdf_download_instruction_2":"Vous pouvez toujours","pdf_download_instruction_cover_letter_download":"télécharger la lettre de motivation du candidat.","pdf_download_instruction_cv_download":"télécharger le CV du candidat."},"applicant_profile":{"application_receipt_date":"Candidature reçue le %{date}","contract_sought":"Contrat recherché","cover_letter":"Lettre de motivation","education":"Formation","in_review":"À l'étude","languages":"Langues","refuse":"Refuser"},"article_curriculums_picker":{"placeholder_child":"Visible par tous les étudiants ayant accès à l'article. Ajoutez des programmes pour restreindre sa visibilité.","placeholder_parent":"Visible par tous les étudiants. Ajoutez des programmes pour restreindre sa visibilité."},"article_snippets_edition":{"confirm_snippet_deletion":"Etes-vous certain de vouloir supprimer ce sous-article?"},"autohide_box":{"see_less":"Afficher moins","see_more":"Afficher plus"},"career_center_sign_up_redirection_box":{"associated_career_center":"Découvrez le Career Center de votre école et accédez à des contenus exclusifs.","go_to_career_center":"Rejoindre mon Career Center","jobteaser_career_center":"{{schoolName}} est déjà sur JobTeaser !","sign_up_on_jobteaser":"Non merci, je veux continuer mon inscription sur JobTeaser"},"checkbox_multi_talents":{"results_count":"%{count} / %{total} résultat(s) selectionné(s)"},"collections_editor":{"add_to_collection":"Ajouter à une collection","apply":"Appliquer","create_a_collection":"Créer une collection","please_select_talents":"Veuillez selectionnez un ou des talents pour pouvoir les appliquer"},"collection_badges":{"no_collections":"Pas de collections"},"collection_creator":{"collection_name_label":"Donnez un nom à votre nouvelle collection","collection_name_title":"Nouvelle collection","create_collection":"Créer la collection","errors":{"collection_already_exists":"La collection %{name} existe déjà","no_collection_name":"Veuillez spécifier un nom de collection"}},"collection_delete":{"delete_collection":"Supprimer la collection","delete_collection_label":"Êtes-vous sûr de vouloir supprimer cette collection : %{name}","delete_collection_title":"Suppression de collection"},"DoubleSliderInput":{"all":"Tout","at_least":"Au moins %{min} mois","between":"De %{min} à %{max} mois","exactly":"%{val} mois","up_to":"Jusqu'à %{max} mois"},"events_calendar":{"day_names":["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"],"day_names_short":["dim","lun","mar","mer","jeu","ven","sam"],"event_details":"Détails de l'événement","month_names":[null,"janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],"next":"Suivant","next_events":"Prochains événements :","no_event":"Il n'y a pas d'événement","prev":"Précédent"},"follow":"Suivre","followed":"Suivie","follow_hint":"Suivez cette entreprise pour avoir ses actualités recrutement en avant-première","highcharts":{"downloadCSV":"Enregistrer au format CSV","downloadXLS":"Enregistrer au format XLS"},"JobOffers":{"Bulk":{"Warning":"Si vous quittez la page, vous perdrez votre sélection actuelle d'offres"},"BulkActionButton":{"one":"Action sur l'offre","other":"Action sur les %{count} offres","zero":"-"},"BulkActivate":{"one":"Accepter l'offre","other":"Accepter les %{count} offres","zero":"-"},"BulkActivateConfirmation":{"one":"Vous êtes sur le point d'accepter l'offre sélectionnée.","other":"Vous êtes sur le point d'accepter les %{count} offres sélectionnées.","zero":"-"},"BulkArchive":{"one":"Archiver une offre","other":"Archiver les %{count} offres","zero":"-"},"BulkArchiveConfirmation":{"one":"Vous êtes sur le point d'archiver l'offre sélectionnée.","other":"Vous êtes sur le point d'archiver les %{count} offres sélectionnées.","zero":"-"},"BulkAssign":{"one":"Assigner l'offre","other":"Assigner %{count} offres"},"BulkAssignSelection":{"one":"Veuillez sélectionner dans la liste suivante la personne à laquelle vous souhaitez assigner l'offre. Laissez le champ vide pour désassigner les offres sélectionnées.","other":"Veuillez sélectionner dans la liste suivante la personne à laquelle vous souhaitez assigner les %{count} offres. Laissez le champ vide pour désassigner les offres sélectionnées."},"BulkRefuse":{"one":"Refuser l'offre","other":"Refuser les %{count} offres","zero":"-"},"BulkRefuseConfirmation":{"one":"Vous êtes sur le point de refuser l'offre sélectionnée.","other":"Vous êtes sur le point de refuser les %{count} offres sélectionnées.","zero":"-"},"BulkRefuseWhyText":{"one":"Indiquez au recruteur la raison du refus de son offre (un email contenant ce motif de refus sera envoyé au recruteur) :","other":"Indiquez aux recruteurs la raison du refus de leurs offres (un email contenant ce motif de refus sera envoyé à chaque recruteur) :","zero":"-"},"BulkTag":{"one":"Taguer l'offre","other":"Taguer %{count} offres"},"BulkTagSelection":"Sélectionner les tags à associer :"},"multiselect":{"all_selected":"Tous","none_selected":"Aucune sélection","positions":"Métiers","recommended_to_all_functions":"Recommandé à toutes les fonctions","see_less":"Restreindre aux fonctions","see_more":"Autres","x_selected":"sélectionné(e)s"},"PasswordSecurity":{"add_a_word_or_two":"Ajoutez encore un mot ou deux, les mots peu fréquents sont plus sûrs.","all_upper":"Avoir tout en majuscule est presque aussi facile à deviner que tout en minuscule.","avoid_dates":"Évitez les dates et années qui vous sont associées.","avoid_recent_years":"Évitez les années récentes","avoid_repeated_chars":"Évitez les répétitions de mots ou de caractères","avoid_sequences":"Évitez les séquences","avoid_years":"Évitez les années qui vous sont associées","a_word":"Un mot seul est facile à deviner","capitalization":"Passer en majuscules ne sécurise pas vraiment","common_names":"Les noms et prénoms courants sont faciles à deviner","common_password":"Ceci est similaire à un mot de passe fréquemment utilisé","dates":"Les dates sont souvent faciles à deviner","names_and_surnames":"Les noms et prénoms seuls sont faciles à deviner","no_need_for_symbols":"Pas besoin de symboles, chiffres ou majuscules","recent_years":"Les années récentes sont faciles à deviner","repeats_aaa":"Les répétitions telles que \"aaa\" sont faciles à deviner","repeats_abc":"Les répétitions telles que \"abcabcabc\" sont à peine plus difficile à deviner que \"abc\"","reversed":"Les mots inversés sont à peine plus difficiles à deviner","sequences_abc":"Les suites comme \"abc\" ou \"6543\" sont faciles à deviner","short_patterns":"Les petits motifs tirés du clavier sont facile à devine\n","straight_rows":"Les lettres dans l'ordre du clavier sont faciles à deviner.","top_10":"Ce mot de passe fait parti des 10 plus courants","top_100":"Ce mot de passe fait parti des 100 plus courants","use_a_longer_pattern":"Utilisez un motif du clavier plus long, avec plus de tournants","use_few_words":"Utilisez quelques mots, évitez les phrases courantes","very_common_password":"Ce mot de passe est très courant"},"PleaseWait":"Veuillez patienter","Processing":"En cours de traitement...","process_done":"Votre demande a bien été prise en compte","publish_offer_button":{"publishing":"En cours ..."},"refusal_message":{"cancel":"Annuler","hello_full_name":"Bonjour %{full_name}","message_error":"Votre message doit contenir entre 0 et %{max_chars_count} caractères","refusal_message":"Message de refus","remaining_chars_count":"%{remaining_chars_count}  caractères restants - %{max_chars_count} maximum","send":"Envoyer"},"remove":"Retirer","rich_text_editor":{"paragraph_format":{"h2":"Titre","h3":"Sous-titre","p":"Normal"},"upload":{"error":"Il y a eu un problème. Veuillez réessayer.","size_error":"Le fichier que vous essayez de télécharger est trop lourd. Veillez à ce que sa taille soit inférieure à 10 Mo."}},"SchoolTargetingWindow":{"SchoolTargetingAudience":{"business_schools_reached":"écoles de commerce sélectionnées","cancel":"Annuler","cancel_notice":"Si vous annulez, vous perdrez votre votre sélection personnalisée d'écoles / universités. Êtes-vous sûr.e de vouloir annuler ?","engineer_schools_reached":"écoles d'ingénieurs sélectionnées","more_than":"+ de","none":"Aucun","select_a_school":"Veuillez sélectionner au moins une école ou université","students_reached":"étudiants et jeunes diplômés atteints","student_reached":"étudiant ou jeune diplomé atteint","submit":"Valider","university_schools_reached":"universités sélectionnées"},"SchoolTargetingBaskets":{"confirm_override":"Si vous sélectionnez un panier d'établissements, vous perdrez votre sélection d'établissements actuelle. Etes-vous sur de vouloir sélectionner le panier?","description":"Restreindre la visibilité de l'offre aux écoles et universités présentes dans l'un de vos paniers","select_a_cart":"-- sélectionnez un panier --","title":"Paniers écoles \u0026 universités"},"SchoolTargetingPanel":{"business":"Ecoles de commerce","engineer":"Ecoles d'ingénieurs","no_school_message":"Désolé, aucune école dans cette catégorie ne correspond à votre recherche.","other":"Autres écoles","SchoolTargetingFilter":{"country_filter_nonSelectedText":"Pays","country_filter_nSelectedText":"pays sélectionné(s)","country_filter_selectAllText":"Tout sélectionner","only_selected":"N'afficher que ma sélection","placeholder":"Recherchez une école / université ..."},"SchoolTargetingOtherSchools":"Liste de toutes les écoles et universités disponibles","SchoolTargetingTabs":{"business":"Ecoles de commerce","engineer":"Ecoles d'ingénieurs","other":"Autres écoles","university":"Universités"},"SchoolTargetingTopSchools":"Ecoles les plus sélectionnées","select_all":"Tout sélectionner","title":"Liste de toutes les écoles et universités disponibles","title_career":"%{school_type} équipées du Career Center JobTeaser","title_no_career":"%{school_type} avec des inscrits sur le site JobTeaser","top_schools":"Ecoles équipées du Career Center JobTeaser","university":"Universités"}},"school_targeting_basket":{"company":{"clear":"Tout effacer","selected_schools":"écoles ou universités sélectionnées","selection_is_empty":"Cochez 1 ou plusieurs écoles ou universités dans la liste pour constituer votre panier","students_count_html":{"one":"+ de %{count} \u003csmall\u003eétudiants et jeunes diplômés atteints\u003c/small\u003e","other":"+ de %{count} \u003csmall\u003eétudiants et jeunes diplômés atteints\u003c/small\u003e","zero":"Tous les étudiants et jeunes diplômés atteints"},"validate_the_restriction":"Valider le panier"},"delete":"Effacer","offer":{"clear":"Tout effacer","selected_schools":"écoles ou universités sélectionnées","selection_is_empty":"Votre offre est actuellement visible par tous les candidats JobTeaser. Pour restreindre sa visibilité, cochez 1 ou plusieurs écoles ou universités dans la liste.","students_count_html":{"one":"+ de %{count} \u003csmall\u003eétudiants et jeunes diplômés atteints\u003c/small\u003e","other":"+ de %{count} \u003csmall\u003eétudiants et jeunes diplômés atteints\u003c/small\u003e","zero":"Tous les étudiants et jeunes diplômés atteints"},"validate_the_restriction":"Valider la visibilité"},"selected_schools":"écoles ou universités sélectionnées","selection_is_empty":"Votre choix est visible de tous","students_count":"+ de %{count} ","title":"étudiants et jeunes diplômés atteints","validate":"Valider"},"school_targeting_baskets":{"cancel_notice":"Si vous annulez, vous perdrez votre votre sélection personnalisée d'écoles / universités. Êtes-vous sûr.e de vouloir annuler ?"},"school_targeting_baskets_list":{"choose_basket":"— sélectionnez un panier —","content":"Pour restreindre la visibilité de l’offre aux écoles et universités présentes dans l’un de vos paniers","title":"Paniers écoles \u0026 universités"},"school_targeting_content":{"no_results":"Désolé, aucune école dans cette catégorie ne correspond à votre recherche.","title":"Liste de toutes les écoles et universités disponibles"},"school_targeting_details_associated_school_info":"En sélectionnant une université, vous sélectionnez également ses facultés. Les étudiants atteints sont ceux de l’université ainsi que ceux de ses facultés.","school_targeting_filters":{"country_filter_non_selected":"Pays","country_filter_n_selected":"pays sélectionné(s)","country_non_selected":"Pays","country_select_all":"Tout sélectionner","only_carrer_center_label":"Afficher uniquement les écoles / universités équipées d'un Career Center JobTeaser","school_type_filter_n_selected":"écoles sélectionnée(s)","school_type_non_selected":"Types d'établissement","school_type_select_all":"Tout sélectionner","search_placeholder":"Recherchez une école, une université…"},"school_targeting_list":{"selected_schools":"%{count} / %{total_count} écoles ou universités sélectionnées"},"school_type_0":"NC","school_type_1":"Ingénieurs","school_type_2":"Management","school_type_3":"Université","school_type_4":"IUT / BTS","school_type_5":"Lycée / Prépa","school_type_6":"Étranger","school_type_7":"Autre","school_type_8":"École d'art / de design","sign_up_link":{"create_an_account":"Créer mon compte","step_one":"Pour vous inscrire, veuillez nous donner quelques informations sur votre profil :"},"sub_events":{"full":"Il n'y a plus de place disponible pour ce créneau.","max_subscriptions_reached":"Vous avez sélectionné le nombre maximal de créneaux possible."},"talent_banks_export":{"add_pages_to_beginning":"Ajouter des pages au début du CVBook (optionnel)","add_pages_to_end":"Ajouter des pages à la fin du CVBook (optionnel)","error_file_size":"Votre fichier est trop volumineux (taille maximum: %{max_size})","error_file_type":"Veuillez selectionner un fichier au format %{file_type}","error_pdf_limit":"Vous avez atteint la limite de %{max_count} CV à exporter en PDF. Veuillez en sélectionner moins.","export":"Exporter","export_xls":"Exporter les profils au format .xls","export_zip":"Exporter les CVs dans une archive .zip","generate_a_talent_book":"Générer un CVBook (maximum 1000 CVs) ","incorrect_email_format":"Le format de votre email n'est pas correct","please_select_cvs":"Veuillez selectionner des CVs","recipient_email":"Envoyer le fichier à cette adresse email","send_an_email":"Envoyer un mail"},"transfer_followers":{"are_you_sure":"Êtes-vous sûr.e de vouloir transférer les followers de l'entreprise %{source_company} vers l'entreprise %{target_company} ?","no_transfer":"Êtes-vous sûr.e de vouloir désactiver l'entreprise %{company} sans transférer ses followers ?"},"unfollow_hint":"Ne plus suivre cette entreprise"};
+    JT.gtmLabels = {"salaries":{"0":"\u003c 19 K","20":"20 to 34 K","35":"35 to 49 K","50":"50 to 69 K","70":"70 to 89 K","90":"90 to 120 K","120":"120 to 150 K","150":"\u003e 150 K"},"experienceLevels":{"3":"Student / Recent Graduate","5":"3 to 5 years","10":"6 to 10 years","100":"More than 10 years"},"positionCategory":{"48":"Accounting","49":"/!!!!!!\\ Import Export / Sales /!!!!!!\\","50":"Administrative / Technical Assistance","51":"Private law","52":"Public law","54":"International law","55":"Translation / Documentation","56":"Study director / Project manager","58":"Education / Training / Animation","59":"Student Job","60":"Student Job","63":"Health, Social","64":"Health Professionals","65":"Social action","66":"Umployment","67":"Social and social-medical intervention","68":"Agricultural production","69":"Industrial production","70":"Public research","71":"Public research","79":"Achats / Logistique SKEMA","80":"Commercial / Export SKEMA","81":"Advisory / Project Management SKEMA","82":"Développement Durable","83":"Audit / Corporate Finance / Business Analysis SKEMA","84":"Informatique / SI SKEMA","85":"Ingénierie / Technique SKEMA","86":"Marketing / Communication SKEMA","87":"Other","88":"Autres SKEMA","89":"Market finance SKEMA","94":"/!!!!!!\\ Art /!!!!!\\","96":"/!!!!!!\\ Marché de l'art /!!!!!!\\","97":"Law / Tax SKEMA","98":"Human ressources SKEMA","102":"Environment","103":"Project Manager / Mission Head","104":"Territorial Planning","105":"Socio- economic studies","106":"Research","107":"Signal / Images","108":"Health Engineering","109":"Géomatique ","110":"Géomarketing","111":"Design","113":"International development","114":"Employee polyvalent","115":"Etudes / Projet / Environnement","116":"Other","117":"Ingénierie système","118":"Mécanique","120":"Spectacle vivant / Patrimoine / Aménagement territorial","121":"Création artistique","122":"Régie / Programmation","123":"Ingénierie / Gestion de Projets (secteur culturel, public)","124":"Administration / Direction (secteur culturel, public)","126":"Prévention / Rééducation","127":"Social / Protection de la personne","128":"Formation","129":"Français Langue Etrangère","130":"Notarial Law","131":"Chargé de mission / projet ","132":"Géographie / aménagement du territoire","133":"/!!!!!\\ Environnement / développement durable /!!!!!!\\","134":"Conseil \u0026 Gestion formation / mobilité / emploi, compétences ","135":"Intervention médico-sociale/ psychologue ","136":"Tourism \u0026 Culture","137":"Développement touristique ","138":"Valorisation / médiation","139":"Chargé de projet / mission ","140":"Management de Projet","141":"Revenue Manager","142":"Restaurant Manager","143":"Front Office Manager","144":"/!!!!!!\\ Combinaison of skills /!!!!!!\\","145":"Research \u0026 Development","146":"Education","147":"Soziales / Pflege","149":"Public Sector","150":"Public Sector","152":"Criminology","153":"Pharma","154":"PR ","155":"Design","156":"History and Art History","158":"Biomedical engineering","159":"Tourism, Hospitality \u0026 Food services","160":"Evénementiel","161":"Import / Export","162":"Sportive management","163":"Economic Consulting","164":"Press","165":"Advertising","166":"Logistic Project Manager","168":"Project Manager","169":"Project Management","171":"Entrepreuneurship / CEO assistant","172":"Communication corporate-entreprise","173":"Communication digitale","174":"/!!!!!!\\ Communication marque-produit /!!!!!!\\","175":"Médias","176":"Public and political affairs","177":"Customer Relationship Management","179":"Traduction","180":"International commerce","181":"Hydraulic / Hydrology","182":"Soziale Arbeit","183":"Gesundheit","184":"/!!!!\\ Economie /!!!!\\","185":"Agroalimentaire","194":"Architecture","195":"Design","196":"Design Produit et industriel","197":"/!!!!!\\ Spatial / Interior Design /!!!!!!\\","198":"Graphic / Print / Web Design","199":"UX Design","200":"Design de service","201":"Design couleurs et matières","202":"Design interactif","204":"Customer Service","205":"Back Office Sales","207":"Système d’information / Big Data ","208":"Performance management (KPI, …)","209":"Risk management ","210":"Marketing et intelligence stratégique","211":"Marketing Digital \u0026 Sales management ","212":"Gestion de projet innovant / Gestion du changement","213":"Management des entreprises sociales","214":"Analyse économique / Modélisation","215":"Optics","216":"Nurse","217":"Odontologist","218":"Physiotherapy","219":"Psychologist","220":"Politics","222":"Politics","223":"Architecture","224":"/!!!!!!\\ Economics /!!!!!!\\","225":"Creation","226":"Fashion Design","227":"Banking","228":"Corporate Governance","229":"Development Finance","230":"Global Markets","231":"Investment Banking ","232":"Private Wealth Management \u0026 Retail Banking","233":"Risk Management","234":"Treasury","235":"Project Manager","236":"Project Manager, Team Manager ","254":"Civil law","256":"Criminal law","257":"Public law","282":"Arts \u0026 Culture","287":"Languages \u0026 Literature","288":"Political Science \u0026 International Relations","290":"Medicine","292":"Pharmacy","293":"Psychology","295":"Property, Real Estate and Surveying","296":"Veterinarian","297":"Sport","299":"Administrative Law","300":"Litigation Law","301":"Compliance","302":"Employment Law","303":"Other legal category","304":"Corporate Social Responsibility \u0026 Compliance","305":"Vocational Training","306":"Public Health","307":"School Pedagogy","308":"Counselling \u0026 Coaching","310":"Sociology","311":"Geography","312":"History \u0026 Heritage","313":"Music \u0026 Performing arts","316":"Library \u0026 Archives","321":"Higher School Certificate and Diploma for Kindergarten and Pre-school Teachers","331":"","335":"Police Constable / Army Officer / Soldier","336":"Documentation \u0026 Translation","337":"Social \u0026 solidarity economy","338":"Humanitarian work","339":"Engineering","340":"Optometry","341":"Jewellery","342":"Electrical service engineering","343":"Plumbing technology","344":"Property administration and Facility management","345":"Map and land surveying","3":"IT / Networks","6":"Marketing / Communication","7":"Purchases / Logistics / Supply Chain","8":"Commercial / Business Development","9":"R\u0026D / Research / Innovation","10":"Audit / Finance / Management","11":"Law / Human Resources","12":"Production / Maintenance / Construction","13":"Consulting / Strategy","15":"Management / Profit Center","16":"Purchases","17":"Logistics / Supply Chain","18":"Actuarial / Insurance","19":"Audit","20":"Cost Controlling / Accountancy","21":"Corporate Finance","22":"Market Finance","23":"Asset Management","24":"Commercial / Business Development","25":"SI Consulting","26":"Organization / Processing","27":"Strategy / Management","28":"Management / Profit Center","29":"Legal / Tax","30":"Human Resources","31":"IT development","32":"IT project management / Product","33":"Infrastructure / Networking / Telecoms","34":"Marketing / Webmarketing","35":"Communication","36":"Production / Operations","37":"Maintenance / Quality / HSE","38":"Construction / Site","39":"Agronomy / Biology","40":"Data Scientist / Electronics Engineer","41":"Civil Engineering / Structures ","42":"Industrial Engineering / Electricity","43":"Physics / Materials / Energy","44":"Process / Chemistry","45":"Statistics / Data","46":"Other R\u0026D","47":"Industrial design / Engineering","237":"Business \u0026 Management","238":"Purchasing","239":"Sales \u0026 Business Development","240":"Communication, PR \u0026 Events","241":"Management, Consulting \u0026 Strategy","242":"Marketing \u0026 Webmarketing","243":"Customer service","244":"Finance","245":"Actuarial ","246":"Audit","247":"Management Control and Accounting","248":"Economics","249":"Financial Services","250":"Corporate Finance","251":"Asset Management","252":"Admin, HR \u0026 Legal","253":"Admin","255":"Corporate law","258":"Social Law","259":"Tax law","260":"Human Resources","261":"IT \u0026 Digital","262":"Programming","263":"Electronics \u0026 Signal Processing","264":"IT Project, Data \u0026 Product Management","265":"Infrastructures, Networks \u0026 Telecom","266":"Web Design \u0026 Usability","267":"Sciences, Engineering \u0026 R\u0026D","268":"Agronomy \u0026 Biology","269":"Architecture \u0026 Urban Planning","270":"Environment \u0026 Sustainable Development","271":"Chemistry \u0026 Processes","272":"Energy, Materials \u0026 Mechanical engineering","273":"Civil Engineering \u0026 Structures","274":"Industrial Design \u0026 Engineering","275":"Statistics, Data Analytics \u0026 Applied Maths","276":"Production \u0026 Operations","277":"Logistics \u0026 Supply Chain","278":"Production \u0026 Operations","279":"Quality \u0026 Maintenance","280":"Construction","281":"Arts, Culture, Tourism \u0026 Hospitality","283":"Media","284":"Design \u0026 Creative","285":"Education \u0026 Training","286":"Journalism \u0026 Publishing","289":"Health, Social care \u0026 Sports","291":"Paramedical \u0026 Care","294":"Social / Personal \u0026 Child care","298":"Literature \u0026 Social Sciences"},"companyCategory":{"1":"Audit / Consulting / Legal","2":"Banking / Finance / Insurance","3":"Construction / Real Estate / Planning / Design","4":"Retail / Consumer Goods / Luxury","5":"Energy / Environment / Utilities","6":"Industrial /  Food Industry / Chemistry","7":"IT / Telecoms","9":"Medicine / Pharmaceuticals / Healthcare / Cosmetics","10":"Services / Transport","11":"Engineering / R\u0026D / Design","12":"Media / Digital / Publishing","13":"Public / Social / NGO / Education","14":"Events / Tourism / Hospitality / Culture","15":"Audit","16":"Consulting","17":"Legal","18":"Banking / Finance","19":"Insurance","20":"Real Estate","21":"Building / Planning","22":"Luxury / Fashion","23":"Retail","24":"Consumer Goods","25":"Energy / Utilities / Oil \u0026 Gas","26":"Environment","27":"Food \u0026 Beverage","28":"Aerospace","29":"Automotive","30":"Chemistry","31":"Defense","32":"Electronics","33":"Materials","34":"Other Industries","35":"IT / IT Consulting / Software","36":"Telecoms","37":"R\u0026D / Design","38":"Engineering","39":"Digital / E-commerce","40":"Media / Publishing","41":"Communication / Advertising","42":"Cosmetics","43":"Medicine / Pharmaceuticals / Health","44":"Public / Government / Education / Armed Forces\n","45":"Recruitment / Training","46":"Catering","47":"Transport / Logistics","48":"Other services to individuals and businesses","49":"Events / Tourism / Hospitality ","50":"Leisure / Culture / Sports","51":"Management Consulting","52":"Agriculture / Forest industry","53":"Social / NGO / Charity","54":"Architecture / Design","55":"Maritime / Railway","56":"Accounting Services","57":"Other","58":"Other"},"companyBusinessType":{"large":"Large","startup":"Start-up","sme":"SME","ngo_public_lab":"NGO / Public institution / Lab"}};
+    JT.appLabels = {"salaries":{"0":"\u003c 19 K","20":"20 à 34 K","35":"35 à 49 K","50":"50 à 69 K","70":"70 à 89 K","90":"90 à 120 K","120":"120 à 150 K","150":"\u003e 150 K"},"experienceLevels":{"3":"Étudiant / jeune diplômé ","5":"3 à 5 ans","10":"6 à 10 ans","100":"Plus de 10 ans"},"positionCategories":{"48":"Comptabilité","49":"/!!!!!!\\ Vente / Import Export /!!!!!!\\","50":"Assistance administrative / technique","51":"Droit privé","52":"Droit public","54":"Droit international","55":"Traduction / Documentation ","56":"Chargé d'étude / de mission","58":"Enseignement / Formation / Animation","59":"Jobs étudiants","60":"Job Etudiant","63":"Santé / Social ","64":"Professionnels de la santé","65":"Action sociale","66":"Insertion / emploi ","67":"Intervention sociale / médico-sociale","68":"Production agricole","69":"Production industrielle","70":"Recherche Publique","71":"Recherche publique","79":"Achats / Logistique SKEMA","80":"Commercial / Export SKEMA","81":"Conseil / Management de projet SKEMA","82":"Développement Durable","83":"Audit / Finance d'entreprise / Gestion SKEMA","84":"Informatique / SI SKEMA","85":"Ingénierie / Technique SKEMA","86":"Marketing / Communication SKEMA","87":"Autres","88":"Autres SKEMA","89":"Finance de marché SKEMA","94":"/!!!!!!\\ Art /!!!!!\\","96":"/!!!!!!\\ Marché de l'art /!!!!!!\\","97":"Juridique / Fiscal SKEMA","98":"Ressources humaines SKEMA","102":"Environnement","103":"Chargé de projet / Mission","104":"Aménagement du territoire","105":"Etudes socio-économiques","106":"Recherche","107":"Traitement du signal / des images","108":"Ingénierie de la Santé","109":"Géomatique","110":"Géomarketing","111":"Design","113":"Développement international","114":"Administratif polyvalent","115":"Etudes / Projet / Environnement","116":"Autres","117":"Ingénierie système","118":"Mécanique","120":"Spectacle vivant / Patrimoine / Aménagement territorial","121":"Création artistique","122":"Régie / Programmation","123":"Ingénierie / Gestion de Projets (secteur culturel, public)","124":"Administration / Direction (secteur culturel, public)","126":"Prévention / Rééducation","127":"Social / Protection de la personne","128":"Formation","129":"Français Langue Etrangère","130":"Droit notarial ","131":"Chargé de mission / projet ","132":"Géographie / aménagement du territoire","133":"/!!!!!\\ Environnement / développement durable /!!!!!!\\","134":"Conseil \u0026 Gestion formation / mobilité / emploi, compétences ","135":"Intervention médico-sociale/ psychologue ","136":"Tourisme, Culture, Patrimoine ","137":"Développement touristique ","138":"Valorisation / médiation","139":"Chargé de projet / mission ","140":"Management de Projet","141":"Revenue","142":"Restaurant","143":"Front Office","144":"/!!!!!!\\ Double compétence /!!!!!!\\","145":"R\u0026D","146":"Education","147":"Soziales / Pflege","149":"Secteur publique","150":"Public Sector","152":"Criminologie","153":"Pharma","154":"PR","155":"Design","156":"Histoire et Histoire de l'art","158":"Biomedical engineering","159":"Tourisme, Hôtellerie \u0026 Restauration","160":"Evénementiel","161":"Import / Export","162":"Management sportif","163":"Economic Consulting","164":"Presse","165":"Publicité","166":"Chef de projet logistique","168":"Chef de Projet","169":"Gestion / Management de projet","171":"Entrepreneuriat / Assistant DG","172":"Communication corporate-entreprise","173":"Communication digitale","174":"/!!!!!!\\ Communication marque-produit /!!!!!!\\","175":"Médias","176":"Administration publique \u0026 politique","177":"Gestion de la relation client","179":"Traduction","180":"Commerce international","181":"Hydraulique / Hydrologie","182":"Soziale Arbeit","183":"Gesundheit","184":"/!!!!\\ Economie /!!!!\\","185":"Agroalimentaire","194":"Architecture","195":"Design","196":"Design Produit et industriel","197":"/!!!!!\\ Spatial / Interior Design /!!!!!!\\","198":"Design graphique, Print ou Web","199":"UX Design","200":"Design de service","201":"Design couleurs et matières","202":"Design interactif","204":"Customer Service","205":"Back Office Sales","207":"Système d’information / Big Data ","208":"Performance management (KPI, …)","209":"Risk management ","210":"Marketing et intelligence stratégique","211":"Marketing Digital \u0026 Sales management ","212":"Gestion de projet innovant / Gestion du changement","213":"Management des entreprises sociales","214":"Analyse économique / Modélisation","215":"Optique","216":"Nurse","217":"Odontologie","218":"Physiothérapeute","219":"Psychologue","220":"Politics","222":"Politics","223":"Architecture ","224":"/!!!!!!\\ Economie /!!!!!!\\","225":"Création","226":"Fashion Design","227":"Banque","228":"Corporate Governance","229":"Development Finance","230":"Global Markets","231":"Investment Banking ","232":"Private Wealth Management \u0026 Retail Banking","233":"Risk Management","234":"Treasury","235":"Chef de projet","236":"Chef de Projet","254":"Droit civil","256":"Droit pénal","257":"Droit public","282":"Arts \u0026 Culture","287":"Langues \u0026 Littérature","288":"Sciences politiques \u0026 Relations Internationales","290":"Médecine","292":"Pharmacie","293":"Psychologie","295":"Real Estate Management","296":"Vétérinaire","297":"Sport","299":"Droit administratif","300":"Contentieux","301":"Conformité","302":"Droit du travail","303":"Droit (autres)","304":"Responsabilité sociétale des entreprises","305":"/!!!\\ Vocational Training","306":"Santé publique","307":"/!!!\\ School Pedagogy","308":"/!!!\\ Counselling \u0026 Coaching","310":"Sociologie","311":"Géographie","312":"Histoire \u0026 Patrimoine","313":"Musique \u0026 Arts du spectacle","316":"Bibliothèque \u0026 Archives","321":"","331":"","335":"Police Constable / Army Officer / Soldier","336":"Documentation \u0026 Traduction","337":"Economie sociale et solidaire","338":"Humanitaire","339":"Ingénierie","340":"","341":"","342":"","343":"","344":"","345":"","3":"Informatique / SI / Réseaux","6":"Marketing / Communication","7":"Achats / Logistique / Supply Chain","8":"Commercial / Business Development","9":"R\u0026D / Etudes / Innovation","10":"Audit / Finance / Gestion","11":"Droit / Ressources Humaines","12":"Production / Maintenance / Travaux","13":"Conseil / Stratégie","15":"Direction / Centre de profit","16":"Achats","17":"Logistique / Supply Chain","18":"Actuariat / Assurance","19":"Audit","20":"Contrôle de gestion / Comptabilité","21":"Finance d'entreprise","22":"Finance de marché","23":"Gestion d'actif","24":"Commercial / Business Development","25":"Conseil en SI","26":"Organisation / Transformation","27":"Stratégie / Management","28":"Direction / Centre de profit","29":"Juridique / Fiscal","30":"Ressources humaines","31":"Développement / IT","32":"Gestion de projet SI / Product","33":"Infrastructure / Réseaux / Télécoms","34":"Marketing / Webmarketing","35":"Communication","36":"Production / Exploitation","37":"Maintenance / Qualité / HSE","38":"Travaux / Chantier","39":"Agronomie / Biologie","40":"Maths apps / Electronique","41":"Génie civil / Structures","42":"Génie industriel / Electricité","43":"Physique / Matériaux / Energétique","44":"Procédés / Chimie","45":"Statistiques / Data","46":"Autre domaine R\u0026D","47":"Conception / Industrialisation","237":"Business \u0026 Management","238":"Achats","239":"Commercial \u0026 Business Development","240":"Communication, RP \u0026 Evénementiel","241":"Management, Conseil \u0026 Stratégie","242":"Marketing \u0026 Webmarketing","243":"Service \u0026 Relation clients","244":"Finance","245":"Actuariat","246":"Audit","247":"Contrôle de Gestion \u0026 Comptabilité","248":"Economie","249":"Finance de marché","250":"Finance d'entreprise","251":"Gestion d'actifs","252":"Admin, RH \u0026 Juridique","253":"Administratif","255":"Droit des affaires","258":"Droit social","259":"Fiscalité","260":"Ressources Humaines","261":"IT \u0026 Digital","262":"Développement Informatique","263":"Electronique \u0026 Traitement du signal","264":"Gestion de projet IT \u0026 Product","265":"Infra, Réseaux \u0026 Télécoms","266":"Webdesign \u0026 Ergonomie","267":"Sciences, Ingénierie \u0026 R\u0026D","268":"Agronomie \u0026 Biologie","269":"Architecture \u0026 Urbanisme","270":"Environnement \u0026 Développement durable","271":"Chimie \u0026 Procédés","272":"Energie, Matériaux \u0026 Mécanique","273":"Génie Civil \u0026 Structures","274":"Génie Industriel \u0026 Conception","275":"Statistiques, Data \u0026 Math App","276":"Production \u0026 Logistique","277":"Logistique \u0026 Supply Chain","278":"Production \u0026 Exploitation","279":"Qualité, HSE \u0026 Maintenance","280":"Travaux \u0026 Chantier","281":"Arts, Culture \u0026 Patrimoine","283":"Audiovisuel","284":"Design \u0026 Création","285":"Education \u0026 Formation","286":"Journalisme \u0026 Édition","289":"Santé, Social \u0026 Sport","291":"Paramédical \u0026 Soin","294":"Social \u0026 Service à la personne","298":"Lettres \u0026 Sciences Humaines"},"companyCategories":{"1":"Audit / Conseil / Juridique","2":"Banque / Finance / Assurance","3":"BTP / Immobilier / Urbanisme / Design","4":"Distribution / Grande conso / Luxe","5":"Energie / Environnement / Utilities","6":"Industrie / Agro / Chimie","7":"Informatique / Télécoms","9":"Médecine / Pharma / Santé / Cosmétique","10":"Services / Transport","11":"Ingénierie / Bureau d'études / Design","12":"Media / Web / Edition","13":"Public / Social / ONG / Education","14":"Tourisme / Loisir / Culture","15":"Audit","16":"Conseil","17":"Juridique","18":"Banque / Finance","19":"Assurance","20":"Immobilier","21":"BTP / Urbanisme","22":"Luxe / Mode","23":"Distribution","24":"Grande conso","25":"Energie / Utilities","26":"Environnement","27":"Agroalimentaire / Boissons","28":"Aéronautique / Spatial","29":"Automobile","30":"Chimie","31":"Défense","32":"Electronique","33":"Matériaux","34":"Autres industries","35":"ESN / Informatique","36":"Télécoms","37":"Bureau d'études / Design","38":"Ingénierie","39":"Web / E-commerce","40":"Media / Edition","41":"Communication / Publicité","42":"Cosmétique","43":"Médecine / Pharmacie / Santé","44":"Public / Education","45":"Recrutement / Formation","46":"Restauration","47":"Transport / Logistique","48":"Autres services aux entreprises et aux particuliers","49":"Tourisme / Hotellerie","50":"Loisirs / Culture / Sports","51":"Conseil en strategie","52":"Agriculture / Secteur forestier","53":"Social / ONG","54":"Architecture / Design","55":"Maritime / Ferroviaire","56":"Services comptables","57":"Autre","58":"Autre"},"contractTypes":{"1":"CDI","2":"CDD","3":"Stage","5":"Freelance/Indépendant","7":"Alternance","8":"VIE / VIA","10":"Graduate Program","12":"Thèse / Doctorat","13":"PSC","15":"Service civique","16":"Stage GoPro","17":"TER - Travaux d'Etudes et de Recherches","18":"Summer job","19":"Stage dans le cursus","20":"Stage hors cursus","21":"Année de probation","22":"Garantie jeunes","23":"Werkstudent [DE]","24":"Bénévolat","25":"Contratto a progetto","26":"Apprentissage","27":"Contrat de professionnalisation","28":"Volontariat","29":"Job étudiant","30":"Work placement","31":"Stage MBA","32":"berufsb. Studium [DE]","33":"Projet"},"jobSearchTypes":{"internship":"Stage","alternating":"Alternance","vie":"VIE / VIA","job":"Emploi","freelance":"Freelance","thesis":"Thèse / Doctorat","apprenticeship":"Apprentissage","graduate_program":"Graduate Program","scientific_project":"PSC","civic_service":"Service civique","gopro_internship":"Stage GoPro","search_project":"Travaux d'Etudes et de Recherches","company_inside":"Summer job","curricular_internship":"Stage dans le cursus","extra_curricular_intership":"Stage hors cursus","probationary_year":"Année de probation","youth_guarantee":"Garantie jeunes","werkstudent":"Werkstudent [DE]","volunteering":"Bénévolat","contratto_a_progetto":"Contratto a progetto","training_contract":"Contrat de professionnalisation","voluntariat":"Volontariat","part_time":"Job étudiant","work_placement":"Work placement","mba_internship":"Stage MBA","berufsbegleitendes_studium":"berufsb. Studium [DE]","project":"Projet"}};
+  })();
+</script>
+
+
+    
+
+  </head>
+  <body data-spa-page="true" class="app-Body jt-Body " >
+
+    <div class="app-Body__wrapper js-app app-Body__wrapper--loading" data-testid="app-Body__wrapper" style="background-image:url(https://d2mp1cia79qmhd.cloudfront.net/prod/assets/logos/jobteaser-waiting-836a4f418cf014438e962d1d5c1c728da70eb5105fa1252aa3a1caaa8ed01de3.svg);">
+
+      
+
+
+      <div class="app-Body__main app-Body__main--spa app-Body__main--standBy jt-Page" data-testid="app-Body__main"></div>
+
+
+    </div>
+
+        <script>
+        window.JTTrackingV3 = {"course_ids":["eb93e218-c481-4e5a-9625-12fa07227236"]}
+    </script>
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=Object.getOwnPropertySymbols%2CSymbol%2CSymbol.asyncIterator%2CSymbol.for%2CSymbol.hasInstance%2CSymbol.isConcatSpreadable%2CSymbol.iterator%2CSymbol.keyFor%2CSymbol.match%2CSymbol.prototype.description%2CSymbol.replace%2CSymbol.search%2CSymbol.species%2CSymbol.split%2CSymbol.toPrimitive%2CSymbol.toStringTag%2CSymbol.unscopables" ></script>
+<script src="https://www.youtube.com/player_api" ></script>
+<script src="https://api.dmcdn.net/all.js" ></script>
+<script src="https://content.jwplatform.com/libraries/LrUNDhOw.js"></script>
+
+
+    <!-- Start of jobteaserhelp Zendesk Widget script -->
+  <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=2bd1f7b1-2a29-4f3d-b9c9-5302176a7605"> </script>
+<!-- End of jobteaserhelp Zendesk Widget script -->
+
+
+
+            <script data-ui-jobteaser="" src="https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/i18n/profile-fr-8d041163c5d1eb08b9b69f344b436b83.js"></script>
+        <script data-ui-jobteaser="" src="https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/i18n/dashboard-fr-f8f1290d2f89369140fa0b0298205d3c.js"></script>
+        <script data-ui-jobteaser="" src="https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/i18n/shared-fr-6114c0ae5c036ffaff3c1125947a7bf9.js"></script>
+
+    <script>
+  var jtGTMEvents;
+
+  (function() {
+    var JT_GTMEvents = function(isUserLoggedIn) {
+
+      this.isUserLoggedIn = !!isUserLoggedIn;
+
+      /*
+      * This public method set up dataLayer to push event to GTM.
+      * 
+      * @return void
+      */
+      this.dataLayerPushEvent = function(eventObject) {
+
+        window.dataLayer = window.dataLayer || [];
+
+        window.dataLayer.push(eventObject);
+      };
+
+      /*
+      * This method sends an event to GTM to know the connection status of a user.
+      * 
+      * @return void
+      */
+      var sendEventStatusUser = function() {
+        var currentController = document.querySelector("html").getAttribute("controller");
+        var isBackOffice = currentController && currentController.indexOf("backend/") >= 0;
+
+        var eventStatusUser = {
+          'event': "user_is_logged_in",
+          'isLoggedIn': this.isUserLoggedIn,
+          'isBackOffice': !!isBackOffice,
+        };
+
+        this.dataLayerPushEvent(eventStatusUser);
+      };
+
+
+      /*
+      * This method sends data to GTM for Criteo 
+      * 
+      * @return void
+      */
+      var sendDataToCriteo = function() {
+
+        var dataLayerPushEvent = this.dataLayerPushEvent;
+        var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        var formOnSignUp = document.querySelector("#new_student_profile");
+
+        if (!formOnSignUp) {
+          return false;
+        } 
+
+        formOnSignUp.addEventListener("submit", function(event) {
+          var userEmail = event.target.querySelector("#student_profile_user_attributes_email").value;
+          
+          if (userEmail && userEmail.match(emailFormat)) {
+            var dataToCriteo = {
+              'event': 'criteoNewUser',
+              'userEmail': userEmail,
+            };
+
+            dataLayerPushEvent(dataToCriteo);
+          }
+        });        
+      };
+
+      /*
+      * This method sends an event to GTM to know what is the version number of module advice where is the user.
+      * 
+      * @return void
+      */
+      var sendEventModuleAdviceVersion = function() {
+        var currentController = document.querySelector("html").getAttribute("controller");
+        var isOnAdviceModule = currentController === "advices" || currentController === "advice_categories";       
+
+        if (isOnAdviceModule) {
+          var isSPA = document.querySelector("body").getAttribute("data-spa-page") === "true";
+          var adviceModuleVersion = isSPA ? "v2" : "v1";
+          var eventAdviceModuleVersion = {
+            'adviceModuleVersion': adviceModuleVersion,
+          };
+
+          this.dataLayerPushEvent(eventAdviceModuleVersion);
+        }
+      };
+
+      this.init = function() {
+        sendEventStatusUser.bind(this)();
+        sendEventModuleAdviceVersion.bind(this)();
+        sendDataToCriteo.bind(this)();
+      };
+
+      this.init();
+    };
+
+    jtGTMEvents = new JT_GTMEvents(true);
+
+  })();
+
+</script>
+
+
+      <script data-ui-jobteaser="" src="https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/bootstrapping-e6582d81d7742cce9368.js"></script>
+      <script data-ui-jobteaser="" src="https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/vendor-f89ca5bc1c4155dd557d.js"></script>
+      <script data-ui-jobteaser="" src="https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/crm_init-fecf30663c580c49208f.js"></script>
+      <script data-ui-jobteaser="" src="https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/fo_feature_profile-53fa7fb552f7ffba66c0.js"></script>
+      <script data-ui-jobteaser="" src="https://d2mp1cia79qmhd.cloudfront.net/ui-jobteaser/datadog_rum_init-669c128b23209dbe9eed.js"></script>
+
+
+    
+    <script>
+if ('serviceWorker' in navigator) {
+  console.log('ServiceWorker registration init')
+  navigator.serviceWorker.register('/serviceworker.js').then(() => {
+    console.log('ServiceWorker registration successful');
+  }, (err) => {
+    console.warn('ServiceWorker registration failed: ', err);
+  })
+}
+</script>
+
+
+  </body>
+</html>
